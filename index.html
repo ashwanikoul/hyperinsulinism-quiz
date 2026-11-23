@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Congenital Hyperinsulinism Quiz — PIER Network Guideline</title>
+  <meta name="description" content="Zero-storage interactive clinical quiz game covering the PIER Network Wessex guideline on Initial Assessment and Management of Congenital Hyperinsulinism in Neonates." />
+  <meta property="og:title" content="Congenital Hyperinsulinism Quiz — PIER Network Guideline" />
+  <meta property="og:description" content="Interactive mobile & desktop clinical quiz on neonatal CHI: GIR calculations, hypoglycaemia screens, acute stabilisation, diazoxide & glucagon, GOSH escalation, and discharge fasts. Saves zero data." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b6e74" />
+  <style>
+    :root {
+      --bg: #f4f7f8;
+      --surface: #ffffff;
+      --subtle: #edf3f5;
+      --border: #d5e0e5;
+      --border-strong: #a7bac2;
+      --fg: #0f1c24;
+      --muted: #506470;
+      --primary: #0b6e74;
+      --primary-fg: #ffffff;
+      --primary-soft: rgba(11, 110, 116, 0.11);
+      --success: #15803d;
+      --success-soft: rgba(21, 128, 61, 0.11);
+      --success-border: rgba(21, 128, 61, 0.36);
+      --warning: #b45309;
+      --warning-soft: rgba(217, 119, 6, 0.12);
+      --error: #dc2626;
+      --error-soft: rgba(220, 38, 38, 0.10);
+      --error-border: rgba(220, 38, 38, 0.35);
+      --shadow-card: 0 1px 2px rgba(15, 28, 36, 0.04), 0 8px 24px -14px rgba(15, 28, 36, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c1419;
+        --surface: #131f26;
+        --subtle: #1a2a33;
+        --border: #263a45;
+        --border-strong: #3d5766;
+        --fg: #edf4f7;
+        --muted: #9cb0bc;
+        --primary: #2bb3ba;
+        --primary-fg: #062124;
+        --primary-soft: rgba(43, 179, 186, 0.16);
+        --success: #4ade80;
+        --success-soft: rgba(74, 222, 128, 0.13);
+        --success-border: rgba(74, 222, 128, 0.38);
+        --warning: #fbbf24;
+        --warning-soft: rgba(251, 191, 36, 0.14);
+        --error: #f87171;
+        --error-soft: rgba(248, 113, 113, 0.14);
+        --error-border: rgba(248, 113, 113, 0.38);
+        --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.32);
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100dvh;
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    button, input {
+      font-family: inherit;
+      touch-action: manipulation;
+    }
+
+    h1, h2, h3, p, ul {
+      margin: 0;
+    }
+
+    .app-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 16px 16px 44px;
+    }
+
+    @media (min-width: 640px) {
+      .app-shell {
+        padding: 28px 24px 56px;
+      }
+    }
+
+    /* Layout utilities */
+    .stack-xs > * + * { margin-top: 6px; }
+    .stack-sm > * + * { margin-top: 10px; }
+    .stack-md > * + * { margin-top: 14px; }
+    .stack-lg > * + * { margin-top: 20px; }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .row-between {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .row-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flex-1 { flex: 1 1 0%; }
+    .shrink-0 { flex-shrink: 0; }
+
+    /* Typography */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .title-xl {
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.22;
+    }
+
+    @media (min-width: 640px) {
+      .title-xl {
+        font-size: 30px;
+      }
+    }
+
+    .title-md {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.38;
+    }
+
+    @media (min-width: 640px) {
+      .title-md {
+        font-size: 18px;
+      }
+    }
+
+    .body-sm {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .body-xs {
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .text-muted { color: var(--muted); }
+    .text-primary { color: var(--primary); }
+    .text-success { color: var(--success); }
+    .text-error { color: var(--error); }
+    .text-warning { color: var(--warning); }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .tabular { font-variant-numeric: tabular-nums; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    /* Surfaces */
+    .surface-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      padding: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .surface-card {
+        padding: 26px;
+      }
+    }
+
+    .surface-subtle {
+      background-color: var(--subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 15px;
+    }
+
+    .divider-top {
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background-color: var(--primary);
+      color: var(--primary-fg);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.15s ease;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      opacity: 0.92;
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background-color: var(--surface);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 13px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--subtle);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .btn-link {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      cursor: pointer;
+    }
+
+    .btn-full-mobile {
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .btn-full-mobile {
+        width: auto;
+      }
+    }
+
+    /* Mode cards */
+    .mode-card {
+      width: 100%;
+      text-align: left;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background-color: var(--surface);
+      color: var(--fg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: border-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+    }
+
+    .mode-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 20px -12px rgba(11, 110, 116, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .mode-card:active {
+      transform: scale(0.99);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-primary {
+      background-color: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .badge-success {
+      background-color: var(--success-soft);
+      color: var(--success);
+    }
+
+    .badge-neutral {
+      background-color: var(--subtle);
+      color: var(--muted);
+    }
+
+    /* Filter chips */
+    .chip-btn {
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+
+    .chip-btn:hover {
+      border-color: var(--primary);
+      color: var(--fg);
+    }
+
+    .chip-btn.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-fg);
+    }
+
+    /* Quiz answer options */
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      min-height: 54px;
+      padding: 13px 15px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background-color: var(--surface);
+      color: var(--fg);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      transition: border-color 0.14s ease, background-color 0.14s ease, transform 0.1s ease;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background-color: var(--subtle);
+    }
+
+    .option-btn:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-soft);
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background-color: var(--success-soft);
+    }
+
+    .option-btn.incorrect {
+      border-color: var(--error);
+      background-color: var(--error-soft);
+    }
+
+    .option-btn.missed {
+      border-color: var(--warning);
+      border-style: dashed;
+      background-color: var(--warning-soft);
+    }
+
+    .option-key {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+      color: var(--muted);
+      background-color: var(--subtle);
+    }
+
+    .option-btn.selected .option-key {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-fg);
+    }
+
+    .option-btn.correct .option-key {
+      background-color: var(--success);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    .option-btn.incorrect .option-key {
+      background-color: var(--error);
+      border-color: var(--error);
+      color: #ffffff;
+    }
+
+    .option-btn.missed .option-key {
+      background-color: var(--warning);
+      border-color: var(--warning);
+      color: #ffffff;
+    }
+
+    /* Progress & Timer */
+    .sticky-hud {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 0 12px;
+      background-color: var(--bg);
+    }
+
+    .progress-track {
+      height: 6px;
+      border-radius: 999px;
+      background-color: var(--subtle);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background-color: var(--primary);
+      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .timer-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.25s linear, background-color 0.25s ease;
+    }
+
+    /* Feedback */
+    .feedback-box {
+      border-radius: 12px;
+      padding: 14px 16px;
+      animation: fadeSlide 0.2s ease-out;
+    }
+
+    .feedback-correct {
+      background-color: var(--success-soft);
+      border: 1px solid var(--success-border);
+    }
+
+    .feedback-wrong {
+      background-color: var(--error-soft);
+      border: 1px solid var(--error-border);
+    }
+
+    /* Slider */
+    .range-slider {
+      width: 100%;
+      height: 8px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .stat-box {
+      background-color: var(--subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 640px) {
+      .stat-num {
+        font-size: 26px;
+      }
+    }
+
+    .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-label input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .kbd-hint {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .kbd-hint {
+        display: inline-flex;
+      }
+    }
+
+    .view-enter {
+      animation: fadeSlide 0.22s ease-out;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Quick Reference Modal */
+    .ref-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 16, 22, 0.58);
+      backdrop-filter: blur(3px);
+      z-index: 50;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    @media (min-width: 640px) {
+      .ref-modal-backdrop {
+        align-items: center;
+        padding: 24px;
+      }
+    }
+
+    .ref-modal-panel {
+      width: 100%;
+      max-width: 680px;
+      max-height: 88dvh;
+      overflow-y: auto;
+      background-color: var(--surface);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 18px 18px 0 0;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (min-width: 640px) {
+      .ref-modal-panel {
+        border-radius: 18px;
+        padding: 24px;
+      }
+    }
+
+    .ref-list {
+      padding-left: 18px;
+      margin-top: 6px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+
+    .ref-list li + li {
+      margin-top: 5px;
+    }
+
+    a.ext-link {
+      color: var(--primary);
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <main id="app" class="app-shell" aria-live="polite"></main>
+
+  <script>
+    "use strict";
+
+    /*
+     * ZERO-STORAGE GUARANTEE:
+     * This application intentionally uses ZERO persistent storage
+     * (no localStorage, no sessionStorage, no cookies, no IndexedDB, no network telemetry).
+     * All quiz state exists strictly in ephemeral memory for the current page session.
+     */
+
+    const DOMAINS = {
+      definitions: { id: "definitions", label: "Definitions & GIR" },
+      diagnosis: { id: "diagnosis", label: "Diagnosis & Screen" },
+      acute: { id: "acute", label: "Acute & 0–48 h" },
+      pharmacology: { id: "pharmacology", label: "Diazoxide & Meds" },
+      discharge: { id: "discharge", label: "Discharge & GOSH" }
+    };
+
+    const QUESTION_BANK = [
+      {
+        id: "q1",
+        domain: "definitions",
+        type: "mcq",
+        section: "Introduction & Pathophysiology",
+        prompt: "Why does Congenital Hyperinsulinism (CHI) carry a particularly high risk of neonatal brain injury (25–50%) compared with some other causes of hypoglycaemia?",
+        options: [
+          "Dysregulated insulin suppresses ketone body mobilisation, depriving the brain of both glucose and secondary ketone fuel",
+          "Excess insulin causes severe hyperosmolar cerebral dehydration alongside hypoglycaemia",
+          "CHI prevents hepatic glycogen storage before birth, so glucose falls immediately after cord clamping",
+          "High circulating C-peptide directly crosses the blood–brain barrier and triggers neonatal seizures"
+        ],
+        answer: 0,
+        pearl: "In CHI, inappropriate pancreatic β-cell insulin secretion prevents lipolysis and ketogenesis during hypoglycaemia, starving the neonatal brain of both its primary fuel (glucose) and secondary fuel (ketones). This places infants at a 25–50% risk of seizures and neurodevelopmental sequelae."
+      },
+      {
+        id: "q2",
+        domain: "definitions",
+        type: "slider",
+        section: "Definitions • Glucose Infusion Rate",
+        prompt: "While normal newborn glucose requirements are 4–6 mg/kg/min, above what Glucose Infusion Rate (GIR) is excessive and suggestive of hyperinsulinism?",
+        unit: "mg/kg/min",
+        prefix: ">",
+        min: 4,
+        max: 16,
+        step: 1,
+        defaultVal: 10,
+        answer: 8,
+        tolerance: 0,
+        pearl: "Normal newborn glucose needs are 4–6 mg/kg/min. A GIR > 8 mg/kg/min required to maintain normoglycaemia is excessive and strongly suggestive of congenital hyperinsulinism."
+      },
+      {
+        id: "q3",
+        domain: "definitions",
+        type: "mcq",
+        section: "Definitions • Thresholds",
+        prompt: "Under the PIER Network CHI guideline, what blood glucose threshold defines hypoglycaemia (triggering a hypoglycaemia screen), and what target blood glucose should be maintained once CHI is suspected?",
+        options: [
+          "Hypoglycaemia < 2.6 mmol/L; maintain > 3.0 mmol/L",
+          "Hypoglycaemia < 3.0 mmol/L; maintain > 3.5 mmol/L",
+          "Hypoglycaemia < 3.5 mmol/L; maintain > 4.5 mmol/L",
+          "Hypoglycaemia < 2.0 mmol/L; maintain > 3.5 mmol/L"
+        ],
+        answer: 1,
+        pearl: "For the purpose of this guideline, hypoglycaemia is defined as blood glucose < 3.0 mmol/L (perform a hypo screen when BG ≤ 3 mmol/L), and in the clinical context of CHI the management aim is to keep blood glucose > 3.5 mmol/L."
+      },
+      {
+        id: "q4",
+        domain: "definitions",
+        type: "mcq",
+        section: "Initial Approach • Worked GIR Example",
+        vignette: "A 3.0 kg term neonate is receiving 120 mL/kg/day of Nutriprem 1 (carbohydrate concentration 8.4 g/100 mL).",
+        prompt: "What is this baby's Glucose Infusion Rate (GIR)?",
+        formulaHint: "Rate (mL/hr) = (mL/kg/day × kg) ÷ 24  |  GIR = (% carb × Rate) ÷ (kg × 6)",
+        options: [
+          "5.6 mg/kg/min",
+          "7.0 mg/kg/min",
+          "8.4 mg/kg/min",
+          "10.5 mg/kg/min"
+        ],
+        answer: 1,
+        pearl: "Rate = (120 × 3) ÷ 24 = 15 mL/hr. GIR = (8.4 × 15) ÷ (3 × 6) = 126 ÷ 18 = 7.0 mg/kg/min. Breast milk (lactose) and Nutriprem 2 are 7.2%, while Nutriprem 1 is 8.4%."
+      },
+      {
+        id: "q5",
+        domain: "definitions",
+        type: "mcq",
+        section: "Initial Approach • Worked GIR Example",
+        vignette: "A 3.6 kg neonate is on IV 15% dextrose at 150 mL/kg/day (22.5 mL/hr) to stay normoglycaemic.",
+        prompt: "What is this baby's GIR, and does it meet the CHI threshold?",
+        formulaHint: "GIR = (% glucose × Rate mL/hr) ÷ (Weight kg × 6)",
+        options: [
+          "10.4 mg/kg/min — meets CHI threshold (> 8 mg/kg/min)",
+          "12.5 mg/kg/min — meets CHI threshold (> 8 mg/kg/min)",
+          "15.6 mg/kg/min — meets CHI threshold (> 8 mg/kg/min)",
+          "7.8 mg/kg/min — below CHI threshold"
+        ],
+        answer: 2,
+        pearl: "GIR = (15 × 22.5) ÷ (3.6 × 6) = 337.5 ÷ 21.6 = 15.6 mg/kg/min. This is well above 8 mg/kg/min and strongly suspicious for CHI."
+      },
+      {
+        id: "q6",
+        domain: "diagnosis",
+        type: "mcq",
+        section: "Definitions • Transitional Hypoglycaemia",
+        prompt: "A neonate had a hypoglycaemia screen performed at 20 hours of age that showed detectable insulin and low ketones. What does the guideline advise?",
+        options: [
+          "Start diazoxide immediately because transitional hypoglycaemia is always ketotic",
+          "Repeat the hypoglycaemia screen after 48–72 hours if hypoglycaemia persists, as early results may reflect normal transitional hypoglycaemia",
+          "No repeat screen is needed because insulin levels in the first 24 hours are diagnostic of permanent CHI",
+          "Delay IV glucose treatment until after 72 hours so the screen is unaffected"
+        ],
+        answer: 1,
+        pearl: "Transitional hypoglycaemia (a hypoketotic hypoglycaemia from a lower glucose threshold for insulin suppression) occurs in the first 48–72 hours of life. A hypo screen taken in the first 48–72 hours must be repeated if hypoglycaemia persists."
+      },
+      {
+        id: "q7",
+        domain: "diagnosis",
+        type: "mcq",
+        section: "Biochemical Diagnosis • CHI Criteria",
+        prompt: "Alongside a GIR > 8 mg/kg/min and plasma glucose < 3 mmol/L, which biochemical profile supports a diagnosis of Congenital Hyperinsulinism?",
+        options: [
+          "Insulin > 2 mU/L (> 12 pmol/L), C-peptide > 165.5 pmol/L, suppressed free fatty acids & 3β-hydroxybutyrate",
+          "Insulin > 10 mU/L, suppressed C-peptide, elevated free fatty acids & elevated 3β-hydroxybutyrate",
+          "Undetectable insulin, elevated cortisol, markedly elevated blood ketones & metabolic acidosis",
+          "Insulin > 2 mU/L, elevated ammonia, lactic acidosis & positive urine organic acids"
+        ],
+        answer: 0,
+        pearl: "CHI is biochemically confirmed by plasma glucose < 3 mmol/L with detectable insulin (> 2 mU/L or > 12 pmol/L), elevated C-peptide (> 165.5 pmol/L), and suppressed free fatty acids and 3β-hydroxybutyrate (BOHB). Always exclude metabolic disorders (acidosis, abnormal organic acids, high ammonia/lactate, deranged LFTs)."
+      },
+      {
+        id: "q8",
+        domain: "diagnosis",
+        type: "mcq",
+        section: "Biochemical Diagnosis • Interpretation Pitfall",
+        prompt: "Which statement regarding plasma insulin measurement during a hypoglycaemia screen is TRUE according to the PIER guideline?",
+        options: [
+          "The absolute plasma insulin concentration directly predicts the clinical severity of CHI",
+          "Insulin has a long half-life, so blood sampling can safely wait 1 hour after dextrose bolus",
+          "Insulin has a short half-life and may not be elevated if sampling is delayed; its level does NOT indicate disease severity",
+          "A single undetectable insulin level definitively rules out CHI even if ketones are suppressed and GIR is 14 mg/kg/min"
+        ],
+        answer: 2,
+        pearl: "Insulin has a very short half-life and may be missed if sampling is delayed. Crucially, the insulin level measured during hypoglycaemia is NOT indicative of the severity of CHI. Repeat hypo screens if BG drops < 3.0 mmol/L until diagnosis is confirmed."
+      },
+      {
+        id: "q9",
+        domain: "diagnosis",
+        type: "mcq",
+        section: "History & Examination • Differential Clues",
+        vignette: "A 4-day-old male neonate with recurrent hypoglycaemia is examined on the postnatal ward. You notice persistent jaundice, a midline cleft palate, and microphallus.",
+        prompt: "Which alternative cause of neonatal hypoglycaemia do these examination findings most strongly point towards?",
+        options: [
+          "Focal K-ATP channel Congenital Hyperinsulinism",
+          "Endocrine deficiency such as hypopituitarism or adrenal insufficiency",
+          "Maternal beta-blocker exposure",
+          "Benign neonatal transitional hypoglycaemia"
+        ],
+        answer: 1,
+        pearl: "Jaundice, midline defects/dysmorphic features, microphallus, and hyperpigmentation are classic clues to endocrine causes such as hypopituitarism or adrenal insufficiency. Hepatomegaly, lactic acidosis, and raised ammonia point toward metabolic disorders."
+      },
+      {
+        id: "q10",
+        domain: "diagnosis",
+        type: "multi",
+        section: "Appendix 1 • Syndromes & Risk Factors",
+        prompt: "Select ALL syndromes listed in Appendix 1 as associated with Hyperinsulinaemic Hypoglycaemia (HH):",
+        options: [
+          "Beckwith-Wiedemann syndrome (BWS)",
+          "Kabuki syndrome",
+          "Sotos syndrome",
+          "DiGeorge (22q11.2 deletion) syndrome",
+          "Costello syndrome"
+        ],
+        answers: [0, 1, 2, 4],
+        pearl: "Appendix 1 lists 9 syndromes associated with HH: Beckwith-Wiedemann, Kabuki, Turner, Sotos, Costello, Simpson-Golabi-Behmel, Trisomy 13, Timothy, and Usher syndromes. (DiGeorge is associated with hypocalcaemia rather than Appendix 1 HH syndromes.)"
+      },
+      {
+        id: "q11",
+        domain: "diagnosis",
+        type: "multi",
+        section: "Appendix 1 • Hypoglycaemia Screen Sampling",
+        prompt: "If blood volume is limited during an acute hypoglycaemic episode, which of these hypoglycaemia screen tests MAY be taken immediately AFTER hypoglycaemia correction?",
+        options: [
+          "Plasma acylcarnitine",
+          "Plasma ammonia",
+          "Plasma amino acids",
+          "Plasma insulin & C-peptide",
+          "Blood 3β-hydroxybutyrate"
+        ],
+        answers: [0, 1, 2],
+        pearl: "Appendix 1 notes that acylcarnitine, plasma ammonia, and plasma amino acids may be taken immediately after hypoglycaemia correction if unable to obtain at the time of hypoglycaemia. Critical fuel/hormone samples (lab glucose, insulin, C-peptide, cortisol, GH, NEFA, BOHB) must be taken AT the time of hypoglycaemia. Remember first urine after hypo for ketones & organic acids!"
+      },
+      {
+        id: "q12",
+        domain: "acute",
+        type: "mcq",
+        section: "Initial Clinical Approach • Immediate Rescue",
+        vignette: "A 3.2 kg neonate with suspected CHI has a blood glucose of 2.1 mmol/L. You have obtained your hypoglycaemia screen samples.",
+        prompt: "What is the immediate IV glucose management and recheck interval?",
+        options: [
+          "2 mL/kg bolus of 10% glucose followed by continuous glucose infusion; recheck BG in 15 minutes (aim > 3.5 mmol/L)",
+          "5 mL/kg bolus of 10% glucose without continuous infusion; recheck BG in 30 minutes",
+          "2 mL/kg bolus of 20% glucose peripherally; recheck BG in 1 hour",
+          "Start 3-hourly expressed breast milk feeds immediately and avoid IV dextrose"
+        ],
+        answer: 0,
+        pearl: "Give 2 mL/kg bolus of 10% glucose followed immediately by a continuous glucose infusion (to prevent rebound hypoglycaemia), and recheck BG after 15 minutes to confirm normoglycaemia (> 3.5 mmol/L). Suspected CHI neonates should initially be managed on IV infusions rather than feeds to accurately calculate GIR and titrate volume."
+      },
+      {
+        id: "q13",
+        domain: "acute",
+        type: "slider",
+        section: "Initial Management • Vascular Access",
+        prompt: "Above what IV dextrose concentration should you consider early central venous access (long line or umbilical venous catheter)?",
+        unit: "% dextrose",
+        prefix: ">",
+        min: 5,
+        max: 25,
+        step: 2.5,
+        defaultVal: 10,
+        answer: 12.5,
+        tolerance: 0,
+        pearl: "Consider central venous access (long line or UVC) early whenever a glucose concentration > 12.5% is required to maintain normoglycaemia."
+      },
+      {
+        id: "q14",
+        domain: "acute",
+        type: "mcq",
+        section: "Management 0–48 hrs • Fluid Volume Titration",
+        prompt: "During the first 0–48 hours, what total fluid volume should you aim to restrict a term neonate to (and a preterm neonate with higher pulmonary hypertension risk) by stepping up dextrose concentration?",
+        options: [
+          "150 mL/kg/day (term) and 140 mL/kg/day (preterm)",
+          "130 mL/kg/day (term) and 120 mL/kg/day (preterm)",
+          "100 mL/kg/day (term) and 80 mL/kg/day (preterm)",
+          "No fluid restriction is needed until 7 days after starting diazoxide"
+        ],
+        answer: 1,
+        pearl: "Increase glucose concentration to reduce total fluid volume to 130 mL/kg/day (consider 120 mL/kg/day in preterm neonates due to higher pulmonary hypertension risk) in preparation for potential diazoxide therapy, minimising severe fluid retention."
+      },
+      {
+        id: "q15",
+        domain: "acute",
+        type: "mcq",
+        section: "Management 0–48 hrs • Escalation vs Weaning",
+        prompt: "If you CANNOT reduce fluid volume to 130 mL/kg/day despite high-concentration IV glucose infusions, what is the recommended next step in the first 0–48 hours?",
+        options: [
+          "Start an IV or subcutaneous glucagon infusion to maintain normoglycaemia",
+          "Commence oral diazoxide immediately without discussing with endocrine or restricting fluids",
+          "Increase total IV fluid volume to 180 mL/kg/day using 10% dextrose",
+          "Administer IV hydrocortisone as first-line monotherapy"
+        ],
+        answer: 0,
+        pearl: "If unable to reduce fluid volume further using high concentrations of glucose, start an IV or SC glucagon infusion (starting at 2.5–5 mcg/kg/hr, up to 20 mcg/kg/hr). Conversely, if volume is reduced to 130 mL/kg/day without glucagon and BG stays persistently > 5–6 mmol/L, consider slowly weaning glucose (possible transient HI)."
+      },
+      {
+        id: "q16",
+        domain: "pharmacology",
+        type: "mcq",
+        section: "Appendix 2 • Diazoxide Mechanism & Dosing",
+        prompt: "How does diazoxide work at the pancreatic β-cell, and what is its typical initial dosing schedule?",
+        options: [
+          "Closes K-ATP channels; start 10–15 mg/kg/day once daily",
+          "Binds K-ATP channels keeping them OPEN (preventing depolarisation & insulin release); start 2–5 mg/kg/day in 3 divided doses",
+          "Blocks somatostatin receptors on β-cells; start 2–5 mcg/kg/hr IV infusion",
+          "Inhibits hepatic glycogenolysis; start 7 mg/kg/day in 2 divided doses"
+        ],
+        answer: 1,
+        pearl: "Diazoxide holds the β-cell K-ATP channel in an open configuration, preventing depolarisation and insulin release. Start at 2–5 mg/kg/day in 3 divided doses (preferably Proglycem; max 20 mg/kg/day) as advised by the Southampton Paediatric Endocrine Team."
+      },
+      {
+        id: "q17",
+        domain: "pharmacology",
+        type: "multi",
+        section: "Management Beyond 48 hrs • Pre-Diazoxide Checklist",
+        prompt: "Before starting diazoxide in a Wessex neonate, select ALL mandatory checklist steps from the PIER guideline:",
+        options: [
+          "Discuss with the Paediatric Endocrine Team in Southampton (within working hours)",
+          "Reduce total fluids to 130 mL/kg/day (or 120 mL/kg/day in preterm neonates)",
+          "Obtain a baseline echocardiogram (and plan repeat echo at 10–14 days, especially if cardiac concerns)",
+          "Counsel parents on side effects and check baseline FBC (with ongoing U&Es/fluid balance monitoring)",
+          "Stop IV/SC glucagon completely 24 hours BEFORE the first dose of diazoxide"
+        ],
+        answers: [0, 1, 2, 3],
+        pearl: "All four pre-diazoxide checklist items are essential! Do NOT stop glucagon before starting diazoxide — continue glucagon and only start weaning it once diazoxide is commenced and blood glucose remains > 3.5 mmol/L."
+      },
+      {
+        id: "q18",
+        domain: "pharmacology",
+        type: "mcq",
+        section: "Appendix 2 • Chlorothiazide & Side Effects",
+        prompt: "Why is chlorothiazide co-prescribed with diazoxide, what is its standard dose, and which electrolyte abnormality is its key listed risk?",
+        options: [
+          "Enhances K-ATP opening; 1 mg/kg OD; hyperkalaemia",
+          "Prevents diazoxide-induced fluid retention; 3–5 mg/kg BD (7 mg/kg/day in 2 divided doses); hyponatraemia",
+          "Prevents hypertrichosis; 2 mg/kg TDS; hypernatraemia",
+          "Reduces risk of NEC; 10 mg/kg OD; hypocalcaemia"
+        ],
+        answer: 1,
+        pearl: "Chlorothiazide (3–5 mg/kg BD; Appendix 2 lists 7 mg/kg/day in 2 divided doses) prevents diazoxide-related fluid retention. Monitor fluid balance and U&Es because its key listed risk is hyponatraemia. On higher diazoxide doses, Southampton may advise switching to furosemide + spironolactone."
+      },
+      {
+        id: "q19",
+        domain: "pharmacology",
+        type: "mcq",
+        section: "Management Beyond 48 hrs • Glucagon Nursing & Weaning",
+        prompt: "A baby on IV glucagon (5 mcg/kg/hr) and 15% dextrose starts diazoxide. Blood sugars stabilise at 6.8–7.9 mmol/L. How should glucagon be weaned, and what are glucagon's key nursing intervals?",
+        options: [
+          "Halve glucagon rate every 4–8 hours (or every 2 hours if BG > 8 mmol/L); stop glucagon BEFORE weaning dextrose concentration. Change syringe/set every 12 h & rotate SC site every 3 days.",
+          "Wean dextrose concentration to 5% first, then stop glucagon abruptly; change syringe every 48 h.",
+          "Reduce glucagon by 10% once daily; change syringe every 24 h & rotate SC site every 7 days.",
+          "Continue glucagon at full dose for 14 days regardless of BG to prevent necrolytic migratory erythema."
+        ],
+        answer: 0,
+        pearl: "Once diazoxide is commenced, halve glucagon every 4–8 hours if BG > 3.5 mmol/L (or every 2 hours if BG > 8 mmol/L). Once glucagon is stopped, wean the glucose concentration. Practical Appendix 2 points: change glucagon syringe/set every 12 hours, rotate SC site every 3 days, and watch for IV-line occlusion and necrolytic migratory erythema."
+      },
+      {
+        id: "q20",
+        domain: "discharge",
+        type: "multi",
+        section: "Escalation • Specialist CHI Centre (GOSH)",
+        prompt: "Select ALL criteria that warrant discussion and/or transfer to the specialist CHI centre (GOSH):",
+        options: [
+          "Unresponsive to diazoxide (2nd-line therapy such as octreotide needed — e.g., focal or genetic CHI)",
+          "IV fluid requirement > 10 days and high GIR > 20 mg/kg/min",
+          "Contraindications to diazoxide (cardiac dysfunction or risk of NEC) or diazoxide side effects",
+          "Family history of CHI or uncertainty of diagnosis",
+          "Transient hypoglycaemia at 12 hours of age responding to 10% dextrose at GIR 6 mg/kg/min"
+        ],
+        answers: [0, 1, 2, 3],
+        pearl: "GOSH referral criteria include: diagnostic uncertainty, inability to maintain BG > 3.5, diazoxide side effects, diazoxide unresponsiveness needing 2nd-line therapy (e.g., octreotide), IV fluids > 10 days with GIR > 20 mg/kg/min, family history of CHI, diazoxide contraindications (cardiac dysfunction / NEC risk), and central venous access difficulties."
+      },
+      {
+        id: "q21",
+        domain: "discharge",
+        type: "mcq",
+        section: "Discharge Planning • Pre-Discharge Safety Fast",
+        prompt: "Which statement accurately describes the pre-discharge safety fast for a baby stabilised on diazoxide?",
+        options: [
+          "A 4-hour fast on the postnatal ward with IV cannula removed beforehand; safe if BG > 3.0 mmol/L",
+          "A 6-hour fast with 1-to-1 nursing and IV access in situ; hourly BG once past normal feed interval; safe to discharge on diazoxide if BG remains > 3.5 mmol/L",
+          "An 8-hour overnight fast; only required if the baby had seizures during NICU admission",
+          "Not required if diazoxide was weaned and stopped in NICU for suspected transient HI"
+        ],
+        answer: 1,
+        pearl: "Perform a 6-hour fast with 1-to-1 nursing and IV access in situ, checking BG hourly once the baby reaches their normal feed interval (or sooner if symptomatic). Safe to discharge on diazoxide if BG > 3.5 mmol/L for 6 hours (or > 3.0 mmol/L if diazoxide was weaned/stopped for suspected transient HI). If BG drops < 3.0 mmol/L, complete a hypo screen and call Southampton."
+      },
+      {
+        id: "q22",
+        domain: "discharge",
+        type: "mcq",
+        section: "Discharge Planning • Home Monitoring & Follow-up",
+        prompt: "Which home care and follow-up plan matches the PIER guideline for an infant discharged on diazoxide?",
+        options: [
+          "Check BG twice daily (longest fasts), never fast > 6 h, target 3.5–8 mmol/L; treat < 3.5 with GlucoGel & ring local hospital; ring if persistently > 8 mmol/L; open ward access & local follow-up at 6 and 12 weeks",
+          "Check BG once weekly, target 2.6–10 mmol/L, treat < 2.6 with an extra milk feed only; GP follow-up at 6 months",
+          "Check BG every 2 hours around the clock for 3 months; stop diazoxide at home if any single reading is > 7 mmol/L",
+          "No home glucometer needed once the 6-hour safety fast is passed; review in Southampton at 1 year"
+        ],
+        answer: 0,
+        pearl: "Discharged infants on diazoxide require open access to their local paediatric ward, a glucometer/lancets/strips + GlucoGel, twice-daily BG checks (morning & pre-evening feed; 3× daily pre-feed + if symptomatic when unwell), max fast 6 hours, target 3.5–8 mmol/L, immediate call for BG < 3.5 (review in person if persistent or > 2 episodes/24 h) or persistently > 8 mmol/L, Southampton endocrine clinic, and local follow-up at 6 & 12 weeks."
+      }
+    ];
+
+    const CASE_SIM_QUESTIONS = [
+      {
+        id: "case1",
+        domain: "acute",
+        type: "mcq",
+        stageLabel: "Stage 1 of 5 • Day 1 Acute Hypoglycaemia",
+        section: "On-Call Case • Baby A (3.0 kg, Term)",
+        vignette: "Baby A (3.0 kg, LGA, no maternal diabetes) presents on Day 2 with jitteriness and a bedside BG of 1.9 mmol/L. You draw a full hypoglycaemia screen (lab glucose, insulin, C-peptide, cortisol, GH, NEFA, BOHB, lactate, blood gas).",
+        prompt: "What is your immediate IV dextrose prescription and next check?",
+        options: [
+          "6 mL (2 mL/kg) IV bolus of 10% glucose, immediately followed by continuous IV glucose infusion; recheck BG in 15 minutes aiming > 3.5 mmol/L",
+          "15 mL (5 mL/kg) IV bolus of 10% glucose, then observe off fluids and recheck BG in 60 minutes",
+          "Give 30 mL formula by NG tube and repeat bedside BG in 30 minutes",
+          "Wait for lab insulin result before starting any dextrose infusion"
+        ],
+        answer: 0,
+        pearl: "2 mL/kg of 10% glucose for a 3.0 kg baby is 6 mL IV, immediately followed by continuous glucose infusion to prevent rebound hypoglycaemia. Recheck BG after 15 minutes aiming > 3.5 mmol/L."
+      },
+      {
+        id: "case2",
+        domain: "definitions",
+        type: "mcq",
+        stageLabel: "Stage 2 of 5 • Calculating GIR & Line Planning",
+        section: "On-Call Case • Baby A (3.0 kg)",
+        vignette: "By 36 hours, Baby A requires 15% IV glucose at 150 mL/kg/day (18.75 mL/hr) to maintain BG > 3.5 mmol/L. Lab results return: glucose 1.8 mmol/L, insulin 9.4 mU/L, C-peptide 410 pmol/L, suppressed BOHB and NEFA.",
+        prompt: "What is Baby A's GIR, and what vascular access / fluid step is required?",
+        formulaHint: "Rate = (150 × 3.0) ÷ 24 = 18.75 mL/hr  |  GIR = (15 × 18.75) ÷ (3.0 × 6)",
+        options: [
+          "GIR 15.6 mg/kg/min — requires central venous access (> 12.5% dextrose) and start IV/SC glucagon (e.g. 5 mcg/kg/hr) to allow fluid restriction to 130 mL/kg/day",
+          "GIR 9.4 mg/kg/min — continue peripheral cannula and increase fluid volume to 180 mL/kg/day",
+          "GIR 7.5 mg/kg/min — within normal transitional range; switch directly to breast feeds",
+          "GIR 22.0 mg/kg/min — immediately transfer to GOSH before discussing with Southampton"
+        ],
+        answer: 0,
+        pearl: "GIR = (15 × 18.75) ÷ 18 = 15.6 mg/kg/min (> 8 mg/kg/min + biochemical hyperinsulinism = CHI). Concentration > 12.5% needs central venous access (UVC/long line). Starting glucagon at 5 mcg/kg/hr helps wean total IV fluid volume down to 130 mL/kg/day prior to diazoxide."
+      },
+      {
+        id: "case3",
+        domain: "pharmacology",
+        type: "mcq",
+        stageLabel: "Stage 3 of 5 • Initiating First-Line Therapy (> 48 h)",
+        section: "On-Call Case • Baby A (3.0 kg)",
+        vignette: "On glucagon 5 mcg/kg/hr, fluids are successfully weaned to 130 mL/kg/day of 15% glucose. Baseline echocardiogram is normal, baseline FBC/U&Es are checked, parents are counselled, and you discuss Baby A with the Southampton Paediatric Endocrine Team.",
+        prompt: "Southampton advises starting diazoxide at 5 mg/kg/day in 3 divided doses plus chlorothiazide at 3 mg/kg BD. What is the exact oral prescription for this 3.0 kg baby?",
+        options: [
+          "Diazoxide 5 mg PO TDS + Chlorothiazide 9 mg PO BD (continue glucagon 5 mcg/kg/hr initially)",
+          "Diazoxide 15 mg PO TDS + Chlorothiazide 3 mg PO BD (stop glucagon immediately)",
+          "Diazoxide 5 mg PO OD + Chlorothiazide 9 mg PO OD (wean dextrose by half today)",
+          "Diazoxide 10 mg PO BD + Furosemide 3 mg PO BD"
+        ],
+        answer: 0,
+        pearl: "Matches the exact PIER guideline Case Example! 5 mg/kg/day × 3 kg = 15 mg/day ÷ 3 = 5 mg PO TDS. Chlorothiazide 3 mg/kg × 3 kg = 9 mg PO BD. Continue glucagon until diazoxide takes effect."
+      },
+      {
+        id: "case4",
+        domain: "pharmacology",
+        type: "mcq",
+        stageLabel: "Stage 4 of 5 • Weaning Strategy",
+        section: "On-Call Case • Baby A (3.0 kg)",
+        vignette: "48 hours after starting diazoxide and chlorothiazide, Baby A's blood glucose stabilises between 6.8 and 7.9 mmol/L.",
+        prompt: "What is the correct sequence to wean Baby A's infusions?",
+        options: [
+          "Halve the glucagon infusion every 4–8 hours while BG > 3.5 mmol/L; once glucagon is stopped, wean dextrose concentration as feeds are introduced",
+          "Stop IV dextrose first while keeping glucagon running at 5 mcg/kg/hr for 1 week",
+          "Halve the diazoxide dose immediately because BG is above 6.5 mmol/L",
+          "Repeat baseline echocardiogram today and discontinue chlorothiazide"
+        ],
+        answer: 0,
+        pearl: "Wean glucagon first by halving the rate every 4–8 hours while BG > 3.5 mmol/L (or every 2 hours if BG > 8 mmol/L). Only once glucagon is stopped should you wean the glucose concentration as oral feeds advance. Remember repeat echo at 10–14 days if clinical/cardiac concerns."
+      },
+      {
+        id: "case5",
+        domain: "discharge",
+        type: "mcq",
+        stageLabel: "Stage 5 of 5 • Preparing for Safe Discharge",
+        section: "On-Call Case • Baby A (3.0 kg)",
+        vignette: "Baby A is now fully orally fed on diazoxide 5 mg PO TDS and chlorothiazide 9 mg PO BD with stable pre-feed blood sugars of 4.6–6.2 mmol/L.",
+        prompt: "What MUST happen before Baby A goes home, and what safety net is arranged?",
+        options: [
+          "Pass a 6-hour safety fast (1-to-1 nursing, IV access in situ, BG > 3.5 mmol/L); train parents on twice-daily BG checks, 3.5–8 mmol/L target, GlucoGel, max 6 h fast; arrange open ward access, Southampton clinic & 6- and 12-week local follow-up",
+          "Pass a 3-hour fast without IV access; discharge with oral glucose solution and GP follow-up in 3 months",
+          "Stop diazoxide for 24 hours to test for transient HI before booking an outpatient fast",
+          "Transfer routinely to GOSH for a PET scan even though Baby A responded completely to low-dose diazoxide"
+        ],
+        answer: 0,
+        pearl: "A supervised 6-hour safety fast with 1-to-1 nursing and IV access in situ (maintaining BG > 3.5 mmol/L) confirms safe discharge dosing. Parents need full hypo/GlucoGel training, open local paediatric ward access, Southampton endocrine clinic, and local 6- & 12-week reviews."
+      }
+    ];
+
+    const state = {
+      view: "home",
+      mode: "quick",
+      selectedDomain: "all",
+      blitzTimer: false,
+      questions: [],
+      currentIndex: 0,
+      score: 0,
+      streak: 0,
+      bestStreak: 0,
+      answers: [],
+      selectedOption: null,
+      multiSelected: new Set(),
+      sliderValue: 0,
+      submitted: false,
+      lastCorrect: false,
+      lastPoints: 0,
+      showFormula: false,
+      timeLeft: 30,
+      timerId: null,
+      reviewFilter: "all",
+      showRefModal: false
+    };
+
+    const app = document.getElementById("app");
+
+    function shuffle(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function stopTimer() {
+      if (state.timerId !== null) {
+        clearInterval(state.timerId);
+        state.timerId = null;
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (!state.blitzTimer || state.submitted) return;
+      state.timeLeft = 30;
+      state.timerId = setInterval(() => {
+        state.timeLeft -= 1;
+        updateTimerUI();
+        if (state.timeLeft <= 0) {
+          stopTimer();
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const bar = document.getElementById("timer-bar-fill");
+      const label = document.getElementById("timer-label");
+      if (!bar || !label) return;
+      const pct = Math.max(0, (state.timeLeft / 30) * 100);
+      bar.style.width = pct + "%";
+      if (state.timeLeft <= 7) {
+        bar.style.backgroundColor = "var(--error)";
+      } else if (state.timeLeft <= 14) {
+        bar.style.backgroundColor = "var(--warning)";
+      } else {
+        bar.style.backgroundColor = "var(--primary)";
+      }
+      label.textContent = state.timeLeft + "s";
+    }
+
+    function prepareQuestion(q) {
+      state.selectedOption = null;
+      state.multiSelected = new Set();
+      state.sliderValue = q.type === "slider" ? q.defaultVal : 0;
+      state.submitted = false;
+      state.lastCorrect = false;
+      state.lastPoints = 0;
+      state.showFormula = false;
+      state.timeLeft = 30;
+    }
+
+    function startQuiz(mode, customQuestions = null) {
+      stopTimer();
+      state.mode = mode;
+      let pool = [];
+
+      if (customQuestions) {
+        pool = customQuestions;
+      } else if (mode === "case") {
+        pool = CASE_SIM_QUESTIONS.map(q => ({ ...q }));
+      } else {
+        const filtered = state.selectedDomain === "all"
+          ? QUESTION_BANK
+          : QUESTION_BANK.filter(q => q.domain === state.selectedDomain);
+        const shuffled = shuffle(filtered);
+        pool = mode === "quick" ? shuffled.slice(0, Math.min(10, shuffled.length)) : shuffled;
+      }
+
+      state.questions = pool.map(q => {
+        if (q.type === "mcq") {
+          const indexed = q.options.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
+          const mixed = shuffle(indexed);
+          return {
+            ...q,
+            options: mixed.map(x => x.text),
+            answer: mixed.findIndex(x => x.isCorrect)
+          };
+        }
+        if (q.type === "multi") {
+          const indexed = q.options.map((text, idx) => ({ text, isCorrect: q.answers.includes(idx) }));
+          const mixed = shuffle(indexed);
+          const newAnswers = [];
+          mixed.forEach((x, idx) => { if (x.isCorrect) newAnswers.push(idx); });
+          return {
+            ...q,
+            options: mixed.map(x => x.text),
+            answers: newAnswers
+          };
+        }
+        return { ...q };
+      });
+
+      state.currentIndex = 0;
+      state.score = 0;
+      state.streak = 0;
+      state.bestStreak = 0;
+      state.answers = [];
+      state.reviewFilter = "all";
+      state.view = "quiz";
+
+      prepareQuestion(state.questions[0]);
+      render();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function handleTimeout() {
+      if (state.submitted) return;
+      evaluateAnswer(true);
+    }
+
+    function evaluateAnswer(timedOut = false) {
+      if (state.submitted) return;
+      stopTimer();
+      const q = state.questions[state.currentIndex];
+      let isCorrect = false;
+      let userAnswer = null;
+
+      if (!timedOut) {
+        if (q.type === "mcq") {
+          userAnswer = state.selectedOption;
+          isCorrect = state.selectedOption === q.answer;
+        } else if (q.type === "multi") {
+          const picked = Array.from(state.multiSelected).sort((a, b) => a - b);
+          const expected = q.answers.slice().sort((a, b) => a - b);
+          userAnswer = picked;
+          isCorrect = picked.length === expected.length && picked.every((v, i) => v === expected[i]);
+        } else if (q.type === "slider") {
+          userAnswer = Number(state.sliderValue);
+          isCorrect = Math.abs(userAnswer - q.answer) <= (q.tolerance || 0);
+        }
+      }
+
+      let pointsEarned = 0;
+      if (isCorrect) {
+        state.streak += 1;
+        if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+        const streakBonus = (state.streak - 1) * 25;
+        const timeBonus = state.blitzTimer ? Math.round(state.timeLeft * 2) : 0;
+        pointsEarned = 100 + streakBonus + timeBonus;
+        state.score += pointsEarned;
+      } else {
+        state.streak = 0;
+      }
+
+      state.submitted = true;
+      state.lastCorrect = isCorrect;
+      state.lastPoints = pointsEarned;
+      state.answers.push({
+        question: q,
+        domain: q.domain,
+        isCorrect,
+        timedOut,
+        userAnswer,
+        pointsEarned
+      });
+
+      render();
+    }
+
+    function nextQuestion() {
+      stopTimer();
+      if (state.currentIndex + 1 < state.questions.length) {
+        state.currentIndex += 1;
+        prepareQuestion(state.questions[state.currentIndex]);
+        render();
+        startTimer();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        state.view = "results";
+        render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function goHome() {
+      stopTimer();
+      state.view = "home";
+      render();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function getRank(pct) {
+      if (pct >= 90) return { title: "Wessex CHI Consultant", note: "Guideline mastery across acute stabilisation, pharmacology, and safe discharge." };
+      if (pct >= 75) return { title: "Senior Neonatal Registrar", note: "Strong command of CHI management; review any missed thresholds below." };
+      if (pct >= 55) return { title: "Paediatric Trainee (ST3–5)", note: "Solid foundation — revisit GIR calculation, pre-diazoxide checks, and fast rules." };
+      return { title: "On-Call Starter", note: "Great warm-up run. Check the clinical pearls and quick-reference sheet, then retry!" };
+    }
+
+    function renderHome() {
+      const domainCounts = { all: QUESTION_BANK.length };
+      Object.keys(DOMAINS).forEach(k => {
+        domainCounts[k] = QUESTION_BANK.filter(q => q.domain === k).length;
+      });
+
+      const filteredCount = domainCounts[state.selectedDomain];
+      const quickCount = Math.min(10, filteredCount);
+
+      return `
+        <div class="view-enter stack-lg">
+          <header class="row-between">
+            <div class="row body-xs font-semibold text-muted">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              <span>Zero-storage session • No data saved</span>
+            </div>
+            <button id="open-ref-btn" type="button" class="btn-secondary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+              </svg>
+              Quick Reference
+            </button>
+          </header>
+
+          <section class="surface-card stack-md">
+            <div class="stack-xs">
+              <p class="eyebrow">PIER Network • Wessex Endocrine Guideline (v1.0)</p>
+              <h1 class="title-xl">Congenital Hyperinsulinism in Neonates</h1>
+              <p class="body-sm text-muted">
+                Test your clinical recall on acute stabilisation, GIR calculation, hypoglycaemia screens, diazoxide &amp; glucagon therapy, GOSH escalation, and pre-discharge safety fasts.
+              </p>
+            </div>
+
+            <div class="divider-top row-between" style="flex-wrap: wrap;">
+              <label class="checkbox-label">
+                <input id="toggle-timer" type="checkbox" ${state.blitzTimer ? "checked" : ""} />
+                <span class="font-semibold">30s Blitz Timer</span>
+                <span class="body-xs text-muted">(speed bonus)</span>
+              </label>
+              <span class="body-xs text-muted">Mobile &amp; desktop • Resets on close</span>
+            </div>
+          </section>
+
+          <section class="stack-sm" aria-label="Topic filter">
+            <div class="row-between">
+              <h2 class="section-label">Focus Topic (for Quiz Modes)</h2>
+              <span class="body-xs text-muted tabular">${filteredCount} questions available</span>
+            </div>
+            <div class="row-wrap">
+              <button type="button" data-domain="all" class="chip-btn ${state.selectedDomain === "all" ? "active" : ""}">
+                All Topics (${domainCounts.all})
+              </button>
+              ${Object.values(DOMAINS).map(d => `
+                <button type="button" data-domain="${d.id}" class="chip-btn ${state.selectedDomain === d.id ? "active" : ""}">
+                  ${escapeHtml(d.label)} (${domainCounts[d.id]})
+                </button>
+              `).join("")}
+            </div>
+          </section>
+
+          <section class="stack-sm" aria-label="Game modes">
+            <h2 class="section-label">Choose a Mode</h2>
+
+            <button id="start-quick" type="button" class="mode-card">
+              <div class="stack-xs">
+                <div class="row-wrap">
+                  <span class="font-bold" style="font-size: 16px;">Quick Shift</span>
+                  <span class="badge badge-primary tabular">${quickCount} questions</span>
+                </div>
+                <p class="body-sm text-muted">Shuffled ward-break quiz mixing thresholds, GIR math, checklists, and clinical vignettes.</p>
+              </div>
+              <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+
+            <button id="start-case" type="button" class="mode-card">
+              <div class="stack-xs">
+                <div class="row-wrap">
+                  <span class="font-bold" style="font-size: 16px;">On-Call Case Simulator</span>
+                  <span class="badge badge-success">5-stage case</span>
+                </div>
+                <p class="body-sm text-muted">Manage Baby A (3.0 kg) from Day 1 bolus and GIR calculation to diazoxide dosing, glucagon weaning, and 6-hour safety fast.</p>
+              </div>
+              <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+
+            <button id="start-full" type="button" class="mode-card">
+              <div class="stack-xs">
+                <div class="row-wrap">
+                  <span class="font-bold" style="font-size: 16px;">Full Guideline Mastery</span>
+                  <span class="badge badge-neutral tabular">${filteredCount} questions</span>
+                </div>
+                <p class="body-sm text-muted">Work through every question in ${state.selectedDomain === "all" ? "all 5 clinical domains" : DOMAINS[state.selectedDomain].label} with end-of-run domain breakdown.</p>
+              </div>
+              <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+          </section>
+
+          <footer class="body-xs text-muted">
+            Educational tool based on the
+            <a class="ext-link" href="https://www.piernetwork.org/guidelines-hyperinsulinism.html" target="_blank" rel="noopener noreferrer">PIER Network CHI Guideline</a>
+            (v1.0, Approved 09/2024, Review 09/2027). Always verify local clinical protocols before prescribing.
+          </footer>
+        </div>
+      `;
+    }
+
+    function renderQuiz() {
+      const q = state.questions[state.currentIndex];
+      const total = state.questions.length;
+      const pct = Math.round(((state.currentIndex + (state.submitted ? 1 : 0)) / total) * 100);
+      const domainLabel = DOMAINS[q.domain] ? DOMAINS[q.domain].label : "Clinical Case";
+      const letters = ["A", "B", "C", "D", "E"];
+
+      let interactionHtml = "";
+
+      if (q.type === "mcq") {
+        interactionHtml = `
+          <div class="stack-sm" role="radiogroup" aria-label="Answer choices">
+            ${q.options.map((opt, idx) => {
+              let cls = "option-btn";
+              if (!state.submitted) {
+                if (state.selectedOption === idx) cls += " selected";
+              } else {
+                if (idx === q.answer) cls += " correct";
+                else if (idx === state.selectedOption) cls += " incorrect";
+              }
+              return `
+                <button type="button" data-mcq="${idx}" class="${cls}" ${state.submitted ? "disabled" : ""}>
+                  <span class="option-key">${letters[idx]}</span>
+                  <span>${escapeHtml(opt)}</span>
+                </button>
+              `;
+            }).join("")}
+          </div>
+        `;
+      } else if (q.type === "multi") {
+        interactionHtml = `
+          <div class="stack-sm" role="group" aria-label="Select all that apply">
+            <p class="body-xs font-semibold text-muted">Select all correct options, then tap Check Answer.</p>
+            ${q.options.map((opt, idx) => {
+              const isPicked = state.multiSelected.has(idx);
+              const isExpected = q.answers.includes(idx);
+              let cls = "option-btn";
+              let marker = isPicked ? "✓" : letters[idx];
+              if (!state.submitted) {
+                if (isPicked) cls += " selected";
+              } else {
+                if (isExpected && isPicked) { cls += " correct"; marker = "✓"; }
+                else if (!isExpected && isPicked) { cls += " incorrect"; marker = "✕"; }
+                else if (isExpected && !isPicked) { cls += " missed"; marker = "!"; }
+              }
+              return `
+                <button type="button" data-multi="${idx}" class="${cls}" ${state.submitted ? "disabled" : ""}>
+                  <span class="option-key">${marker}</span>
+                  <span>${escapeHtml(opt)}</span>
+                </button>
+              `;
+            }).join("")}
+          </div>
+        `;
+      } else if (q.type === "slider") {
+        const displayVal = Number(state.sliderValue);
+        const answerDisplay = (q.prefix ? q.prefix + " " : "") + q.answer + " " + q.unit;
+        interactionHtml = `
+          <div class="surface-subtle stack-md">
+            <div class="row-between">
+              <span class="section-label">Your Threshold</span>
+              <span id="slider-readout" class="font-bold tabular text-primary" style="font-size: 24px;">
+                ${q.prefix ? escapeHtml(q.prefix) + " " : ""}${displayVal}
+                <span class="body-sm font-semibold text-muted">${escapeHtml(q.unit)}</span>
+              </span>
+            </div>
+            <input
+              id="threshold-slider"
+              type="range"
+              min="${q.min}"
+              max="${q.max}"
+              step="${q.step}"
+              value="${displayVal}"
+              class="range-slider"
+              ${state.submitted ? "disabled" : ""}
+              aria-label="Select threshold value"
+            />
+            <div class="row-between body-xs text-muted tabular">
+              <span>${q.prefix ? q.prefix + " " : ""}${q.min} ${escapeHtml(q.unit)}</span>
+              <span>${q.prefix ? q.prefix + " " : ""}${q.max} ${escapeHtml(q.unit)}</span>
+            </div>
+            ${state.submitted ? `
+              <div class="divider-top row-between body-sm">
+                <span class="text-muted">Guideline value:</span>
+                <strong class="tabular text-success">${escapeHtml(answerDisplay)}</strong>
+              </div>
+            ` : ""}
+          </div>
+        `;
+      }
+
+      const canSubmit = !state.submitted && (
+        (q.type === "mcq" && state.selectedOption !== null) ||
+        (q.type === "multi" && state.multiSelected.size > 0) ||
+        (q.type === "slider")
+      );
+
+      let feedbackHtml = "";
+      if (state.submitted) {
+        const lastRec = state.answers[state.answers.length - 1];
+        const heading = lastRec.timedOut
+          ? "Time's up"
+          : state.lastCorrect
+            ? `Correct${state.lastPoints ? ` • +${state.lastPoints} pts` : ""}`
+            : "Not quite — clinical pearl";
+        feedbackHtml = `
+          <div class="feedback-box ${state.lastCorrect ? "feedback-correct" : "feedback-wrong"} stack-xs">
+            <div class="row-between" style="flex-wrap: wrap;">
+              <strong class="body-sm font-bold ${state.lastCorrect ? "text-success" : "text-error"}">
+                ${escapeHtml(heading)}
+              </strong>
+              <span class="body-xs text-muted">${escapeHtml(q.section)}</span>
+            </div>
+            <p class="body-sm">${escapeHtml(q.pearl)}</p>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="stack-md">
+          <div class="sticky-hud stack-sm">
+            <div class="row-between">
+              <button id="quit-btn" type="button" class="btn-secondary">← Exit</button>
+              <div class="row body-xs font-bold tabular">
+                <span class="text-muted">Q ${state.currentIndex + 1}/${total}</span>
+                ${state.streak >= 2 ? `<span class="text-warning">🔥 ${state.streak}</span>` : ""}
+                <span class="text-primary">${state.score} pts</span>
+              </div>
+            </div>
+
+            <div class="progress-track" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill" style="width: ${pct}%;"></div>
+            </div>
+
+            ${state.blitzTimer ? `
+              <div class="row">
+                <div class="progress-track flex-1" style="height: 4px;">
+                  <div id="timer-bar-fill" class="timer-fill" style="width: ${(state.timeLeft / 30) * 100}%; background-color: var(--primary);"></div>
+                </div>
+                <span id="timer-label" class="body-xs mono tabular text-muted" style="width: 28px; text-align: right;">${state.timeLeft}s</span>
+              </div>
+            ` : ""}
+          </div>
+
+          <article class="surface-card stack-md view-enter">
+            <div class="row-between" style="flex-wrap: wrap;">
+              <span class="eyebrow">${escapeHtml(q.stageLabel || domainLabel)}</span>
+              <span class="body-xs text-muted">${escapeHtml(q.section)}</span>
+            </div>
+
+            ${q.vignette ? `
+              <div class="surface-subtle stack-xs body-sm">
+                <span class="section-label" style="display: block;">Clinical Scenario</span>
+                <p>${escapeHtml(q.vignette)}</p>
+              </div>
+            ` : ""}
+
+            <h2 class="title-md">${escapeHtml(q.prompt)}</h2>
+
+            ${q.formulaHint ? `
+              <div class="stack-xs">
+                <button id="toggle-formula" type="button" class="btn-link">
+                  ${state.showFormula ? "Hide GIR formula" : "Need the GIR formula?"}
+                </button>
+                ${state.showFormula ? `
+                  <div class="surface-subtle body-xs mono">${escapeHtml(q.formulaHint)}</div>
+                ` : ""}
+              </div>
+            ` : ""}
+
+            ${interactionHtml}
+            ${feedbackHtml}
+
+            <div class="row-between" style="padding-top: 4px;">
+              <span class="kbd-hint body-xs text-muted">
+                ${state.submitted ? "Press Enter to continue" : (q.type === "mcq" ? "Keys 1–4 to pick • Enter to check" : "Press Enter to check")}
+              </span>
+              ${!state.submitted ? `
+                <button id="submit-btn" type="button" class="btn-primary btn-full-mobile" ${canSubmit ? "" : "disabled"}>
+                  Check Answer
+                </button>
+              ` : `
+                <button id="next-btn" type="button" class="btn-primary btn-full-mobile">
+                  ${state.currentIndex + 1 < total ? "Next Question →" : "View Clinical Debrief →"}
+                </button>
+              `}
+            </div>
+          </article>
+        </div>
+      `;
+    }
+
+    function renderResults() {
+      const total = state.answers.length;
+      const correctCount = state.answers.filter(a => a.isCorrect).length;
+      const accuracy = total ? Math.round((correctCount / total) * 100) : 0;
+      const rank = getRank(accuracy);
+      const missedItems = state.answers.filter(a => !a.isCorrect);
+
+      const byDomain = {};
+      state.answers.forEach(rec => {
+        if (!byDomain[rec.domain]) byDomain[rec.domain] = { correct: 0, total: 0 };
+        byDomain[rec.domain].total += 1;
+        if (rec.isCorrect) byDomain[rec.domain].correct += 1;
+      });
+
+      const listToShow = state.reviewFilter === "missed" ? missedItems : state.answers;
+
+      return `
+        <div class="view-enter stack-lg">
+          <header class="row-between">
+            <button id="home-btn" type="button" class="btn-secondary">← All Modes</button>
+            <button id="open-ref-btn" type="button" class="btn-secondary">Quick Reference</button>
+          </header>
+
+          <section class="surface-card stack-lg">
+            <div class="stack-xs">
+              <p class="eyebrow">Session Debrief • Ephemeral (Not Saved)</p>
+              <h1 class="title-xl">${escapeHtml(rank.title)}</h1>
+              <p class="body-sm text-muted">${escapeHtml(rank.note)}</p>
+            </div>
+
+            <div class="grid-3">
+              <div class="stat-box">
+                <div class="stat-num tabular text-primary">${accuracy}%</div>
+                <div class="body-xs text-muted">${correctCount}/${total} correct</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num tabular">${state.score}</div>
+                <div class="body-xs text-muted">Score</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num tabular">${state.bestStreak}</div>
+                <div class="body-xs text-muted">Best Streak</div>
+              </div>
+            </div>
+
+            <div class="stack-sm">
+              <h2 class="section-label">Domain Breakdown</h2>
+              <div class="stack-sm">
+                ${Object.entries(byDomain).map(([domId, stats]) => {
+                  const pct = Math.round((stats.correct / stats.total) * 100);
+                  const barColor = pct >= 80 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--error)";
+                  return `
+                    <div class="stack-xs">
+                      <div class="row-between body-xs font-semibold">
+                        <span>${escapeHtml(DOMAINS[domId]?.label || domId)}</span>
+                        <span class="tabular text-muted">${stats.correct}/${stats.total} (${pct}%)</span>
+                      </div>
+                      <div class="progress-track">
+                        <div class="progress-fill" style="width: ${pct}%; background-color: ${barColor};"></div>
+                      </div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            </div>
+
+            <div class="row-wrap">
+              ${missedItems.length > 0 ? `
+                <button id="retry-missed-btn" type="button" class="btn-primary">
+                  Retry ${missedItems.length} Missed
+                </button>
+              ` : ""}
+              <button id="play-again-btn" type="button" class="${missedItems.length > 0 ? "btn-secondary" : "btn-primary"}">
+                New Shuffled Run
+              </button>
+            </div>
+          </section>
+
+          <section class="stack-sm">
+            <div class="row-between" style="flex-wrap: wrap;">
+              <h2 class="section-label">Clinical Pearls Review</h2>
+              <div class="row-wrap">
+                <button type="button" data-review="all" class="chip-btn ${state.reviewFilter === "all" ? "active" : ""}">
+                  All (${total})
+                </button>
+                <button type="button" data-review="missed" class="chip-btn ${state.reviewFilter === "missed" ? "active" : ""}">
+                  Missed (${missedItems.length})
+                </button>
+              </div>
+            </div>
+
+            ${listToShow.length === 0 ? `
+              <div class="surface-card body-sm text-muted" style="text-align: center;">
+                No missed questions in this run — clean sweep!
+              </div>
+            ` : listToShow.map(rec => `
+              <div class="surface-card stack-xs" style="padding: 16px 18px;">
+                <span class="body-xs font-bold ${rec.isCorrect ? "text-success" : "text-error"}">
+                  ${rec.isCorrect ? "✓ Correct" : (rec.timedOut ? "⏱ Timed out" : "✕ Missed")} • ${escapeHtml(rec.question.section)}
+                </span>
+                <p class="body-sm font-bold">${escapeHtml(rec.question.prompt)}</p>
+                <p class="body-sm text-muted">${escapeHtml(rec.question.pearl)}</p>
+              </div>
+            `).join("")}
+          </section>
+        </div>
+      `;
+    }
+
+    function renderRefModal() {
+      if (!state.showRefModal) return "";
+      return `
+        <div id="ref-backdrop" class="ref-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ref-title">
+          <div class="ref-modal-panel stack-md">
+            <div class="row-between" style="padding-bottom: 12px; border-bottom: 1px solid var(--border);">
+              <div>
+                <h2 id="ref-title" class="title-md">PIER CHI Quick Reference</h2>
+                <p class="body-xs text-muted">Wessex Endocrine Network • Version 1.0 (09/2024)</p>
+              </div>
+              <button id="close-ref-btn" type="button" class="btn-secondary">Close</button>
+            </div>
+
+            <div class="stack-sm">
+              <div class="surface-subtle">
+                <h3 class="eyebrow">Thresholds &amp; GIR</h3>
+                <ul class="ref-list">
+                  <li><strong>Hypoglycaemia:</strong> BG &lt; 3.0 mmol/L (screen at ≤ 3.0 mmol/L). <strong>CHI target:</strong> &gt; 3.5 mmol/L.</li>
+                  <li><strong>Normal GIR:</strong> 4–6 mg/kg/min. <strong>Suspect CHI:</strong> GIR &gt; 8 mg/kg/min.</li>
+                  <li><strong>GIR formula:</strong> (% glucose × mL/hr) ÷ (weight kg × 6).</li>
+                  <li><strong>Milk carb %:</strong> Breast milk 7.2% • Nutriprem 1 = 8.4% • Nutriprem 2 = 7.2%.</li>
+                  <li><strong>Biochemical CHI:</strong> BG &lt; 3 mmol/L, insulin &gt; 2 mU/L (&gt; 12 pmol/L), C-peptide &gt; 165.5 pmol/L, suppressed FFA &amp; BOHB. Repeat if initial screen done in first 48–72 h.</li>
+                </ul>
+              </div>
+
+              <div class="surface-subtle">
+                <h3 class="eyebrow">Acute &amp; 0–48 h Stabilisation</h3>
+                <ul class="ref-list">
+                  <li><strong>Rescue:</strong> 2 mL/kg IV 10% glucose bolus + continuous infusion; recheck BG in 15 min (&gt; 3.5 mmol/L).</li>
+                  <li><strong>Central access (UVC/long line):</strong> Consider early if glucose &gt; 12.5%.</li>
+                  <li><strong>Fluid cap pre-diazoxide:</strong> Reduce to 130 mL/kg/day (120 mL/kg/day in preterm neonates).</li>
+                  <li><strong>Glucagon infusion (IV/SC):</strong> Start 2.5–5 mcg/kg/hr (max 20); change set q12h, rotate SC site q3d. Risks: line occlusion, necrolytic migratory erythema.</li>
+                </ul>
+              </div>
+
+              <div class="surface-subtle">
+                <h3 class="eyebrow">Diazoxide &amp; Chlorothiazide (&gt; 48 h)</h3>
+                <ul class="ref-list">
+                  <li><strong>Pre-start checklist:</strong> Discuss with Southampton Endocrine (working hours), fluids ≤ 130 (or 120 preterm) mL/kg/day, baseline echo (repeat 10–14 d), baseline FBC (q4–6m), counsel parents.</li>
+                  <li><strong>Diazoxide:</strong> Opens K-ATP channel; start 2–5 mg/kg/day in 3 divided doses (max 20; Proglycem). Risks: fluid retention, pulmonary HTN, hypertrichosis, coarse facies, neutropenia/thrombocytopenia, NEC.</li>
+                  <li><strong>Chlorothiazide:</strong> 3–5 mg/kg BD (7 mg/kg/day ÷ 2); prevents fluid retention. Risk: hyponatraemia (monitor U&amp;Es).</li>
+                  <li><strong>Weaning:</strong> Halve glucagon q4–8h if BG &gt; 3.5 (q2h if &gt; 8); stop glucagon before weaning dextrose.</li>
+                </ul>
+              </div>
+
+              <div class="surface-subtle">
+                <h3 class="eyebrow">Discharge &amp; GOSH Referral</h3>
+                <ul class="ref-list">
+                  <li><strong>6-hour safety fast:</strong> 1-to-1 nursing, IV access in situ, hourly BG past normal feed interval. Pass: &gt; 3.5 mmol/L on diazoxide (&gt; 3.0 if transient/weaned off).</li>
+                  <li><strong>Home rules:</strong> Open ward access, BG checks BD (TDS + symptomatic if unwell), max fast 6 h, target 3.5–8 mmol/L, GlucoGel if &lt; 3.5 &amp; call hospital (also call if persistently &gt; 8), local review at 6 &amp; 12 weeks + Southampton clinic.</li>
+                  <li><strong>GOSH criteria:</strong> Diazoxide-unresponsive (needs octreotide), GIR &gt; 20 &amp; IV fluids &gt; 10 d, contraindications/side effects, family history, uncertain diagnosis, central access difficulty.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function render() {
+      let bodyHtml = "";
+      if (state.view === "home") bodyHtml = renderHome();
+      else if (state.view === "quiz") bodyHtml = renderQuiz();
+      else if (state.view === "results") bodyHtml = renderResults();
+
+      app.innerHTML = bodyHtml + renderRefModal();
+      bindEvents();
+    }
+
+    function bindEvents() {
+      document.getElementById("open-ref-btn")?.addEventListener("click", () => {
+        state.showRefModal = true;
+        render();
+      });
+      document.getElementById("close-ref-btn")?.addEventListener("click", () => {
+        state.showRefModal = false;
+        render();
+      });
+      const refBackdrop = document.getElementById("ref-backdrop");
+      if (refBackdrop) {
+        refBackdrop.addEventListener("click", (e) => {
+          if (e.target === refBackdrop) {
+            state.showRefModal = false;
+            render();
+          }
+        });
+      }
+
+      if (state.view === "home") {
+        const timerToggle = document.getElementById("toggle-timer");
+        if (timerToggle) {
+          timerToggle.addEventListener("change", (e) => {
+            state.blitzTimer = e.target.checked;
+          });
+        }
+        document.querySelectorAll("[data-domain]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            state.selectedDomain = btn.getAttribute("data-domain");
+            render();
+          });
+        });
+        document.getElementById("start-quick")?.addEventListener("click", () => startQuiz("quick"));
+        document.getElementById("start-case")?.addEventListener("click", () => startQuiz("case"));
+        document.getElementById("start-full")?.addEventListener("click", () => startQuiz("full"));
+      }
+
+      if (state.view === "quiz") {
+        document.getElementById("quit-btn")?.addEventListener("click", goHome);
+
+        document.getElementById("toggle-formula")?.addEventListener("click", () => {
+          state.showFormula = !state.showFormula;
+          render();
+        });
+
+        document.querySelectorAll("[data-mcq]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            if (state.submitted) return;
+            state.selectedOption = Number(btn.getAttribute("data-mcq"));
+            render();
+          });
+        });
+
+        document.querySelectorAll("[data-multi]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            if (state.submitted) return;
+            const idx = Number(btn.getAttribute("data-multi"));
+            if (state.multiSelected.has(idx)) state.multiSelected.delete(idx);
+            else state.multiSelected.add(idx);
+            render();
+          });
+        });
+
+        const slider = document.getElementById("threshold-slider");
+        if (slider) {
+          slider.addEventListener("input", (e) => {
+            const q = state.questions[state.currentIndex];
+            state.sliderValue = Number(e.target.value);
+            const readout = document.getElementById("slider-readout");
+            if (readout) {
+              readout.innerHTML = `${q.prefix ? escapeHtml(q.prefix) + " " : ""}${state.sliderValue} <span class="body-sm font-semibold text-muted">${escapeHtml(q.unit)}</span>`;
+            }
+          });
+        }
+
+        document.getElementById("submit-btn")?.addEventListener("click", () => evaluateAnswer(false));
+        document.getElementById("next-btn")?.addEventListener("click", nextQuestion);
+      }
+
+      if (state.view === "results") {
+        document.getElementById("home-btn")?.addEventListener("click", goHome);
+        document.getElementById("play-again-btn")?.addEventListener("click", () => {
+          startQuiz(state.mode === "retry" ? "quick" : state.mode);
+        });
+        document.getElementById("retry-missed-btn")?.addEventListener("click", () => {
+          const missedQs = state.answers.filter(a => !a.isCorrect).map(a => a.question);
+          if (missedQs.length) startQuiz("retry", missedQs);
+        });
+        document.querySelectorAll("[data-review]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            state.reviewFilter = btn.getAttribute("data-review");
+            render();
+          });
+        });
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (state.showRefModal) {
+        if (e.key === "Escape") {
+          state.showRefModal = false;
+          render();
+        }
+        return;
+      }
+
+      if (state.view !== "quiz") return;
+      const q = state.questions[state.currentIndex];
+
+      if (!state.submitted && (q.type === "mcq" || q.type === "multi")) {
+        const num = parseInt(e.key, 10);
+        if (num >= 1 && num <= q.options.length) {
+          const idx = num - 1;
+          if (q.type === "mcq") {
+            state.selectedOption = idx;
+          } else {
+            if (state.multiSelected.has(idx)) state.multiSelected.delete(idx);
+            else state.multiSelected.add(idx);
+          }
+          render();
+          return;
+        }
+      }
+
+      if (e.key === "Enter") {
+        if (!state.submitted) {
+          const canSubmit =
+            (q.type === "mcq" && state.selectedOption !== null) ||
+            (q.type === "multi" && state.multiSelected.size > 0) ||
+            (q.type === "slider");
+          if (canSubmit) {
+            e.preventDefault();
+            evaluateAnswer(false);
+          }
+        } else {
+          e.preventDefault();
+          nextQuestion();
+        }
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
