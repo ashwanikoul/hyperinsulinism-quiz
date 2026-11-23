@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Congenital Hyperinsulinism Quiz — PIER Network Guideline</title>
-  <meta name="description" content="Zero-storage interactive clinical quiz game covering the PIER Network Wessex guideline on Initial Assessment and Management of Congenital Hyperinsulinism in Neonates." />
-  <meta property="og:title" content="Congenital Hyperinsulinism Quiz — PIER Network Guideline" />
-  <meta property="og:description" content="Interactive mobile & desktop clinical quiz on neonatal CHI: GIR calculations, hypoglycaemia screens, acute stabilisation, diazoxide & glucagon, GOSH escalation, and discharge fasts. Saves zero data." />
+  <title>Congenital Hyperinsulinism Quiz — PIER &amp; UK National Consensus</title>
+  <meta name="description" content="Zero-storage interactive clinical quiz game integrating the PIER Network Wessex CHI Guideline (v1.0) and the UK National Collaborative Consensus (Shaikh et al., Frontiers in Endocrinology 2023)." />
+  <meta property="og:title" content="Congenital Hyperinsulinism Quiz — PIER &amp; UK National Consensus" />
+  <meta property="og:description" content="Interactive mobile &amp; desktop clinical quiz on neonatal &amp; paediatric CHI: GIR math, hypo screens, genetics, glucagon, diazoxide, octreotide, feeds/MDT, surgery, CGM &amp; discharge. Saves zero data." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b6e74" />
   <style>
@@ -21,6 +21,8 @@
       --primary: #0b6e74;
       --primary-fg: #ffffff;
       --primary-soft: rgba(11, 110, 116, 0.11);
+      --secondary-accent: #1d5b8c;
+      --secondary-soft: rgba(29, 91, 140, 0.11);
       --success: #15803d;
       --success-soft: rgba(21, 128, 61, 0.11);
       --success-border: rgba(21, 128, 61, 0.36);
@@ -44,6 +46,8 @@
         --primary: #2bb3ba;
         --primary-fg: #062124;
         --primary-soft: rgba(43, 179, 186, 0.16);
+        --secondary-accent: #60a5fa;
+        --secondary-soft: rgba(96, 165, 250, 0.16);
         --success: #4ade80;
         --success-soft: rgba(74, 222, 128, 0.13);
         --success-border: rgba(74, 222, 128, 0.38);
@@ -88,14 +92,14 @@
     }
 
     .app-shell {
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto;
-      padding: 16px 16px 44px;
+      padding: 16px 16px 48px;
     }
 
     @media (min-width: 640px) {
       .app-shell {
-        padding: 28px 24px 56px;
+        padding: 28px 24px 60px;
       }
     }
 
@@ -240,18 +244,9 @@
       transition: transform 0.12s ease, opacity 0.15s ease;
     }
 
-    .btn-primary:hover:not(:disabled) {
-      opacity: 0.92;
-    }
-
-    .btn-primary:active:not(:disabled) {
-      transform: scale(0.985);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+    .btn-primary:hover:not(:disabled) { opacity: 0.92; }
+    .btn-primary:active:not(:disabled) { transform: scale(0.985); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .btn-secondary {
       display: inline-flex;
@@ -274,9 +269,7 @@
       border-color: var(--border-strong);
     }
 
-    .btn-secondary:active:not(:disabled) {
-      transform: scale(0.985);
-    }
+    .btn-secondary:active:not(:disabled) { transform: scale(0.985); }
 
     .btn-link {
       background: transparent;
@@ -290,14 +283,10 @@
       cursor: pointer;
     }
 
-    .btn-full-mobile {
-      width: 100%;
-    }
+    .btn-full-mobile { width: 100%; }
 
     @media (min-width: 640px) {
-      .btn-full-mobile {
-        width: auto;
-      }
+      .btn-full-mobile { width: auto; }
     }
 
     /* Mode cards */
@@ -323,9 +312,7 @@
       transform: translateY(-1px);
     }
 
-    .mode-card:active {
-      transform: scale(0.99);
-    }
+    .mode-card:active { transform: scale(0.99); }
 
     .badge {
       display: inline-block;
@@ -335,20 +322,10 @@
       font-weight: 600;
     }
 
-    .badge-primary {
-      background-color: var(--primary-soft);
-      color: var(--primary);
-    }
-
-    .badge-success {
-      background-color: var(--success-soft);
-      color: var(--success);
-    }
-
-    .badge-neutral {
-      background-color: var(--subtle);
-      color: var(--muted);
-    }
+    .badge-primary { background-color: var(--primary-soft); color: var(--primary); }
+    .badge-secondary { background-color: var(--secondary-soft); color: var(--secondary-accent); }
+    .badge-success { background-color: var(--success-soft); color: var(--success); }
+    .badge-neutral { background-color: var(--subtle); color: var(--muted); }
 
     /* Filter chips */
     .chip-btn {
@@ -398,34 +375,13 @@
       background-color: var(--subtle);
     }
 
-    .option-btn:active:not(:disabled) {
-      transform: scale(0.99);
-    }
+    .option-btn:active:not(:disabled) { transform: scale(0.99); }
+    .option-btn:disabled { cursor: default; }
 
-    .option-btn:disabled {
-      cursor: default;
-    }
-
-    .option-btn.selected {
-      border-color: var(--primary);
-      background-color: var(--primary-soft);
-    }
-
-    .option-btn.correct {
-      border-color: var(--success);
-      background-color: var(--success-soft);
-    }
-
-    .option-btn.incorrect {
-      border-color: var(--error);
-      background-color: var(--error-soft);
-    }
-
-    .option-btn.missed {
-      border-color: var(--warning);
-      border-style: dashed;
-      background-color: var(--warning-soft);
-    }
+    .option-btn.selected { border-color: var(--primary); background-color: var(--primary-soft); }
+    .option-btn.correct { border-color: var(--success); background-color: var(--success-soft); }
+    .option-btn.incorrect { border-color: var(--error); background-color: var(--error-soft); }
+    .option-btn.missed { border-color: var(--warning); border-style: dashed; background-color: var(--warning-soft); }
 
     .option-key {
       flex-shrink: 0;
@@ -443,29 +399,10 @@
       background-color: var(--subtle);
     }
 
-    .option-btn.selected .option-key {
-      background-color: var(--primary);
-      border-color: var(--primary);
-      color: var(--primary-fg);
-    }
-
-    .option-btn.correct .option-key {
-      background-color: var(--success);
-      border-color: var(--success);
-      color: #ffffff;
-    }
-
-    .option-btn.incorrect .option-key {
-      background-color: var(--error);
-      border-color: var(--error);
-      color: #ffffff;
-    }
-
-    .option-btn.missed .option-key {
-      background-color: var(--warning);
-      border-color: var(--warning);
-      color: #ffffff;
-    }
+    .option-btn.selected .option-key { background-color: var(--primary); border-color: var(--primary); color: var(--primary-fg); }
+    .option-btn.correct .option-key { background-color: var(--success); border-color: var(--success); color: #ffffff; }
+    .option-btn.incorrect .option-key { background-color: var(--error); border-color: var(--error); color: #ffffff; }
+    .option-btn.missed .option-key { background-color: var(--warning); border-color: var(--warning); color: #ffffff; }
 
     /* Progress & Timer */
     .sticky-hud {
@@ -503,15 +440,8 @@
       animation: fadeSlide 0.2s ease-out;
     }
 
-    .feedback-correct {
-      background-color: var(--success-soft);
-      border: 1px solid var(--success-border);
-    }
-
-    .feedback-wrong {
-      background-color: var(--error-soft);
-      border: 1px solid var(--error-border);
-    }
+    .feedback-correct { background-color: var(--success-soft); border: 1px solid var(--success-border); }
+    .feedback-wrong { background-color: var(--error-soft); border: 1px solid var(--error-border); }
 
     /* Slider */
     .range-slider {
@@ -536,9 +466,7 @@
     }
 
     @media (min-width: 640px) {
-      .stat-num {
-        font-size: 26px;
-      }
+      .stat-num { font-size: 26px; }
     }
 
     .checkbox-label {
@@ -557,19 +485,13 @@
       cursor: pointer;
     }
 
-    .kbd-hint {
-      display: none;
-    }
+    .kbd-hint { display: none; }
 
     @media (hover: hover) and (pointer: fine) {
-      .kbd-hint {
-        display: inline-flex;
-      }
+      .kbd-hint { display: inline-flex; }
     }
 
-    .view-enter {
-      animation: fadeSlide 0.22s ease-out;
-    }
+    .view-enter { animation: fadeSlide 0.22s ease-out; }
 
     @keyframes fadeSlide {
       from { opacity: 0; transform: translateY(6px); }
@@ -589,15 +511,12 @@
     }
 
     @media (min-width: 640px) {
-      .ref-modal-backdrop {
-        align-items: center;
-        padding: 24px;
-      }
+      .ref-modal-backdrop { align-items: center; padding: 24px; }
     }
 
     .ref-modal-panel {
       width: 100%;
-      max-width: 680px;
+      max-width: 700px;
       max-height: 88dvh;
       overflow-y: auto;
       background-color: var(--surface);
@@ -609,10 +528,7 @@
     }
 
     @media (min-width: 640px) {
-      .ref-modal-panel {
-        border-radius: 18px;
-        padding: 24px;
-      }
+      .ref-modal-panel { border-radius: 18px; padding: 24px; }
     }
 
     .ref-list {
@@ -622,9 +538,7 @@
       line-height: 1.55;
     }
 
-    .ref-list li + li {
-      margin-top: 5px;
-    }
+    .ref-list li + li { margin-top: 5px; }
 
     a.ext-link {
       color: var(--primary);
@@ -643,38 +557,54 @@
      * This application intentionally uses ZERO persistent storage
      * (no localStorage, no sessionStorage, no cookies, no IndexedDB, no network telemetry).
      * All quiz state exists strictly in ephemeral memory for the current page session.
+     *
+     * CLINICAL SOURCES:
+     * 1) PIER Network (Wessex Endocrine Network): Initial Assessment and Management of
+     *    Congenital Hyperinsulinism in Neonates (v1.0, Approved 09/2024, Review 09/2027)
+     * 2) Shaikh MG et al.: Standardised practices in the networked management of congenital
+     *    hyperinsulinism: a UK national collaborative consensus. Front. Endocrinol. 2023;14:1231043.
      */
+
+    const SOURCES = {
+      pier: { id: "pier", label: "PIER Network v1.0", badgeClass: "badge-primary" },
+      uk: { id: "uk", label: "UK Consensus 2023", badgeClass: "badge-secondary" },
+      both: { id: "both", label: "PIER + UK Consensus", badgeClass: "badge-success" }
+    };
 
     const DOMAINS = {
       definitions: { id: "definitions", label: "Definitions & GIR" },
-      diagnosis: { id: "diagnosis", label: "Diagnosis & Screen" },
-      acute: { id: "acute", label: "Acute & 0–48 h" },
-      pharmacology: { id: "pharmacology", label: "Diazoxide & Meds" },
-      discharge: { id: "discharge", label: "Discharge & GOSH" }
+      diagnosis: { id: "diagnosis", label: "Diagnosis & Genetics" },
+      acute: { id: "acute", label: "Acute & Glucagon" },
+      pharmacology: { id: "pharmacology", label: "Diazoxide & Octreotide" },
+      nutrition: { id: "nutrition", label: "Feeds, Diet & MDT" },
+      discharge: { id: "discharge", label: "Surgery, Discharge & CGM" }
     };
 
     const QUESTION_BANK = [
+      /* 1. DEFINITIONS & GIR (5) */
       {
         id: "q1",
         domain: "definitions",
+        source: "both",
         type: "mcq",
-        section: "Introduction & Pathophysiology",
-        prompt: "Why does Congenital Hyperinsulinism (CHI) carry a particularly high risk of neonatal brain injury (25–50%) compared with some other causes of hypoglycaemia?",
+        section: "Pathophysiology & Brain Injury Risk",
+        prompt: "Why does Congenital Hyperinsulinism (CHI) carry a particularly high risk of neurodisability compared with ketotic causes of hypoglycaemia?",
         options: [
           "Dysregulated insulin suppresses ketone body mobilisation, depriving the brain of both glucose and secondary ketone fuel",
-          "Excess insulin causes severe hyperosmolar cerebral dehydration alongside hypoglycaemia",
-          "CHI prevents hepatic glycogen storage before birth, so glucose falls immediately after cord clamping",
+          "Excess insulin triggers severe hyperosmolar cerebral dehydration alongside hypoglycaemia",
+          "CHI prevents hepatic glycogen storage in utero so glucose falls immediately at cord clamping",
           "High circulating C-peptide directly crosses the blood–brain barrier and triggers neonatal seizures"
         ],
         answer: 0,
-        pearl: "In CHI, inappropriate pancreatic β-cell insulin secretion prevents lipolysis and ketogenesis during hypoglycaemia, starving the neonatal brain of both its primary fuel (glucose) and secondary fuel (ketones). This places infants at a 25–50% risk of seizures and neurodevelopmental sequelae."
+        pearl: "Inappropriate pancreatic β-cell insulin secretion inhibits lipolysis and ketogenesis during hypoglycaemia, starving the brain of both glucose and ketones. Both PIER and the UK Consensus stress prompt control to prevent neuroglycopaenic brain injury (25–50% risk of seizures/neurodevelopmental sequelae)."
       },
       {
         id: "q2",
         domain: "definitions",
+        source: "both",
         type: "slider",
-        section: "Definitions • Glucose Infusion Rate",
-        prompt: "While normal newborn glucose requirements are 4–6 mg/kg/min, above what Glucose Infusion Rate (GIR) is excessive and suggestive of hyperinsulinism?",
+        section: "Glucose Infusion Rate Threshold",
+        prompt: "While normal newborn glucose requirements are 4–6 mg/kg/min, above what Glucose Infusion Rate (GIR) is excessive and strongly suggestive of CHI?",
         unit: "mg/kg/min",
         prefix: ">",
         min: 4,
@@ -683,28 +613,30 @@
         defaultVal: 10,
         answer: 8,
         tolerance: 0,
-        pearl: "Normal newborn glucose needs are 4–6 mg/kg/min. A GIR > 8 mg/kg/min required to maintain normoglycaemia is excessive and strongly suggestive of congenital hyperinsulinism."
+        pearl: "Both PIER and the UK National Consensus specify a normal neonatal GIR of 4–6 mg/kg/min and > 8 mg/kg/min as excessive and suggestive of CHI. Handy bedside rule (UK Consensus): 10% dextrose at 5 mL/kg/hr (120 mL/kg/day) already equals a GIR of 8.3 mg/kg/min."
       },
       {
         id: "q3",
         domain: "definitions",
+        source: "both",
         type: "mcq",
-        section: "Definitions • Thresholds",
-        prompt: "Under the PIER Network CHI guideline, what blood glucose threshold defines hypoglycaemia (triggering a hypoglycaemia screen), and what target blood glucose should be maintained once CHI is suspected?",
+        section: "Diagnostic & Therapeutic Glucose Thresholds",
+        prompt: "What operational blood glucose threshold triggers investigation for CHI, and what practical therapeutic target is agreed across both PIER and the UK National Consensus?",
         options: [
-          "Hypoglycaemia < 2.6 mmol/L; maintain > 3.0 mmol/L",
-          "Hypoglycaemia < 3.0 mmol/L; maintain > 3.5 mmol/L",
-          "Hypoglycaemia < 3.5 mmol/L; maintain > 4.5 mmol/L",
-          "Hypoglycaemia < 2.0 mmol/L; maintain > 3.5 mmol/L"
+          "Investigate ≤ 2.6 mmol/L; treat to maintain > 3.0 mmol/L",
+          "Investigate ≤ 3.0 mmol/L; treat to maintain ≥ 3.5 mmol/L",
+          "Investigate ≤ 3.3 mmol/L; treat to maintain ≥ 4.5 mmol/L",
+          "Investigate ≤ 2.0 mmol/L; treat to maintain ≥ 3.5 mmol/L"
         ],
         answer: 1,
-        pearl: "For the purpose of this guideline, hypoglycaemia is defined as blood glucose < 3.0 mmol/L (perform a hypo screen when BG ≤ 3 mmol/L), and in the clinical context of CHI the management aim is to keep blood glucose > 3.5 mmol/L."
+        pearl: "The UK Consensus chose 3.0 mmol/L as a pragmatic operational cut-off between 2.6 and 3.3 mmol/L (avoiding over-diagnosing benign transitional lows), and ≥ 3.5 mmol/L as the practical treatment target (aspirational > 4.0 mmol/L balanced against overtreatment side effects)."
       },
       {
         id: "q4",
         domain: "definitions",
+        source: "pier",
         type: "mcq",
-        section: "Initial Approach • Worked GIR Example",
+        section: "Worked GIR Example • Enteral Milk",
         vignette: "A 3.0 kg term neonate is receiving 120 mL/kg/day of Nutriprem 1 (carbohydrate concentration 8.4 g/100 mL).",
         prompt: "What is this baby's Glucose Infusion Rate (GIR)?",
         formulaHint: "Rate (mL/hr) = (mL/kg/day × kg) ÷ 24  |  GIR = (% carb × Rate) ÷ (kg × 6)",
@@ -715,15 +647,16 @@
           "10.5 mg/kg/min"
         ],
         answer: 1,
-        pearl: "Rate = (120 × 3) ÷ 24 = 15 mL/hr. GIR = (8.4 × 15) ÷ (3 × 6) = 126 ÷ 18 = 7.0 mg/kg/min. Breast milk (lactose) and Nutriprem 2 are 7.2%, while Nutriprem 1 is 8.4%."
+        pearl: "Rate = (120 × 3) ÷ 24 = 15 mL/hr. GIR = (8.4 × 15) ÷ (3 × 6) = 126 ÷ 18 = 7.0 mg/kg/min. Remember milk carbohydrate percentages from PIER: breast milk (lactose) = 7.2%, Nutriprem 2 = 7.2%, Nutriprem 1 = 8.4%."
       },
       {
         id: "q5",
         domain: "definitions",
+        source: "pier",
         type: "mcq",
-        section: "Initial Approach • Worked GIR Example",
-        vignette: "A 3.6 kg neonate is on IV 15% dextrose at 150 mL/kg/day (22.5 mL/hr) to stay normoglycaemic.",
-        prompt: "What is this baby's GIR, and does it meet the CHI threshold?",
+        section: "Worked GIR Example • High-Concentration IV",
+        vignette: "A 3.6 kg neonate requires IV 15% dextrose at 150 mL/kg/day (22.5 mL/hr) to keep blood glucose > 3.5 mmol/L.",
+        prompt: "What is this baby's GIR, and how does it compare to the CHI threshold?",
         formulaHint: "GIR = (% glucose × Rate mL/hr) ÷ (Weight kg × 6)",
         options: [
           "10.4 mg/kg/min — meets CHI threshold (> 8 mg/kg/min)",
@@ -732,75 +665,99 @@
           "7.8 mg/kg/min — below CHI threshold"
         ],
         answer: 2,
-        pearl: "GIR = (15 × 22.5) ÷ (3.6 × 6) = 337.5 ÷ 21.6 = 15.6 mg/kg/min. This is well above 8 mg/kg/min and strongly suspicious for CHI."
+        pearl: "GIR = (15 × 22.5) ÷ (3.6 × 6) = 337.5 ÷ 21.6 = 15.6 mg/kg/min — nearly double the 8 mg/kg/min CHI threshold. (Note from UK Consensus: UK minimal incidence of persistent CHI > 6 months is 1 in 28,389 live births.)"
       },
+
+      /* 2. DIAGNOSIS & GENETICS (7) */
       {
         id: "q6",
         domain: "diagnosis",
+        source: "both",
         type: "mcq",
-        section: "Definitions • Transitional Hypoglycaemia",
-        prompt: "A neonate had a hypoglycaemia screen performed at 20 hours of age that showed detectable insulin and low ketones. What does the guideline advise?",
+        section: "Transitional Hypoglycaemia vs Early CHI Red Flags",
+        prompt: "How should clinicians balance normal transitional hypoglycaemia (first 48–72 hours) against early recognition of CHI?",
         options: [
-          "Start diazoxide immediately because transitional hypoglycaemia is always ketotic",
-          "Repeat the hypoglycaemia screen after 48–72 hours if hypoglycaemia persists, as early results may reflect normal transitional hypoglycaemia",
-          "No repeat screen is needed because insulin levels in the first 24 hours are diagnostic of permanent CHI",
-          "Delay IV glucose treatment until after 72 hours so the screen is unaffected"
+          "Never investigate or suspect CHI before 72 hours of life",
+          "Repeat an early hypo screen after 48–72 h if hypoglycaemia persists, BUT suspect CHI even within 48 h if there is severe/recurrent hypoglycaemia, undetectable BG, or ≥ 2 episodes < 3.0 mmol/L with GIR > 8 mg/kg/min",
+          "Start diazoxide in all neonates with any BG < 2.6 mmol/L in the first 24 hours",
+          "Transitional hypoglycaemia is always strongly ketotic, so low ketones at 12 hours proves permanent genetic CHI"
         ],
         answer: 1,
-        pearl: "Transitional hypoglycaemia (a hypoketotic hypoglycaemia from a lower glucose threshold for insulin suppression) occurs in the first 48–72 hours of life. A hypo screen taken in the first 48–72 hours must be repeated if hypoglycaemia persists."
+        pearl: "Transitional hypoglycaemia is itself hypoketotic and occurs in the first 48–72 h, so early screens need repeating if hypoglycaemia persists (PIER). However, the UK Consensus stresses that severe/recurrent lows, undetectable BG at any time, or ≥ 2 episodes < 3.0 mmol/L with GIR > 8 mg/kg/min within 48 h should alert clinicians to CHI early."
       },
       {
         id: "q7",
         domain: "diagnosis",
+        source: "both",
         type: "mcq",
-        section: "Biochemical Diagnosis • CHI Criteria",
-        prompt: "Alongside a GIR > 8 mg/kg/min and plasma glucose < 3 mmol/L, which biochemical profile supports a diagnosis of Congenital Hyperinsulinism?",
+        section: "Biochemical Criteria & Sample Collection",
+        prompt: "Which biochemical profile supports CHI, and what is the top sampling priority if blood volume is very limited during acute hypoglycaemia?",
         options: [
-          "Insulin > 2 mU/L (> 12 pmol/L), C-peptide > 165.5 pmol/L, suppressed free fatty acids & 3β-hydroxybutyrate",
-          "Insulin > 10 mU/L, suppressed C-peptide, elevated free fatty acids & elevated 3β-hydroxybutyrate",
-          "Undetectable insulin, elevated cortisol, markedly elevated blood ketones & metabolic acidosis",
-          "Insulin > 2 mU/L, elevated ammonia, lactic acidosis & positive urine organic acids"
+          "BG < 3.0 mmol/L, insulin > 2 mU/L (> 12 pmol/L), C-peptide > 165.5 pmol/L, suppressed FFA & BOHB; prioritise peripheral plasma glucose and serum insulin",
+          "BG < 3.0 mmol/L, elevated BOHB & FFA, undetectable C-peptide; prioritise plasma amino acids and acylcarnitine",
+          "BG < 2.6 mmol/L, elevated ammonia, lactic acidosis; draw plasma glucose directly from the IV dextrose line",
+          "BG < 3.5 mmol/L, suppressed insulin, high cortisol; wait 1 hour after IV dextrose bolus before drawing samples"
         ],
         answer: 0,
-        pearl: "CHI is biochemically confirmed by plasma glucose < 3 mmol/L with detectable insulin (> 2 mU/L or > 12 pmol/L), elevated C-peptide (> 165.5 pmol/L), and suppressed free fatty acids and 3β-hydroxybutyrate (BOHB). Always exclude metabolic disorders (acidosis, abnormal organic acids, high ammonia/lactate, deranged LFTs)."
+        pearl: "Always sample BEFORE glucose treatment and draw plasma glucose peripherally (avoiding IV line contamination). If blood volume is small, the UK Consensus advises prioritising plasma glucose and serum insulin (expected turnaround 2–3 working days). Also exclude metabolic disorders (acidosis, abnormal organic acids, raised ammonia/lactate, deranged LFTs)."
       },
       {
         id: "q8",
         domain: "diagnosis",
+        source: "uk",
         type: "mcq",
-        section: "Biochemical Diagnosis • Interpretation Pitfall",
-        prompt: "Which statement regarding plasma insulin measurement during a hypoglycaemia screen is TRUE according to the PIER guideline?",
+        section: "Insulin Half-Life & Interpretation Pitfalls",
+        prompt: "According to the UK National Consensus, roughly how short is insulin's half-life, in up to what proportion of CHI cases can insulin be undetectable on a screen, and how is CHI still recognised?",
         options: [
-          "The absolute plasma insulin concentration directly predicts the clinical severity of CHI",
-          "Insulin has a long half-life, so blood sampling can safely wait 1 hour after dextrose bolus",
-          "Insulin has a short half-life and may not be elevated if sampling is delayed; its level does NOT indicate disease severity",
-          "A single undetectable insulin level definitively rules out CHI even if ketones are suppressed and GIR is 14 mg/kg/min"
+          "Half-life ~60 minutes; undetectable in < 1%; an undetectable insulin definitively excludes CHI",
+          "Half-life ~6 minutes; undetectable in up to 20% of cases; rely on evidence of insulin action (suppressed ketones/BOHB & FFA + high GIR) and repeat screens",
+          "Half-life ~30 minutes; insulin level directly predicts whether the baby will need pancreatic surgery",
+          "Half-life ~6 minutes; modest blood ketones reliably exclude CHI in neonates on dextrose infusions"
         ],
-        answer: 2,
-        pearl: "Insulin has a very short half-life and may be missed if sampling is delayed. Crucially, the insulin level measured during hypoglycaemia is NOT indicative of the severity of CHI. Repeat hypo screens if BG drops < 3.0 mmol/L until diagnosis is confirmed."
+        answer: 1,
+        pearl: "Insulin has a very short half-life (~6 minutes), does NOT correlate with disease severity, and can be undetectable in up to 20% of CHI cases! Diagnosis then hinges on insulin action (suppressed BOHB/FFA + GIR > 8 mg/kg/min). Note also that modest ketones do NOT exclude CHI."
       },
       {
         id: "q9",
         domain: "diagnosis",
+        source: "uk",
         type: "mcq",
-        section: "History & Examination • Differential Clues",
-        vignette: "A 4-day-old male neonate with recurrent hypoglycaemia is examined on the postnatal ward. You notice persistent jaundice, a midline cleft palate, and microphallus.",
-        prompt: "Which alternative cause of neonatal hypoglycaemia do these examination findings most strongly point towards?",
+        section: "C-Peptide & Exogenous Insulin (FII)",
+        vignette: "A hypoglycaemia screen during BG 1.9 mmol/L shows markedly raised serum insulin, suppressed ketones, and an UNDETECTABLE C-peptide.",
+        prompt: "What crucial differential must be considered, and what specific test should be requested?",
         options: [
-          "Focal K-ATP channel Congenital Hyperinsulinism",
-          "Endocrine deficiency such as hypopituitarism or adrenal insufficiency",
-          "Maternal beta-blocker exposure",
-          "Benign neonatal transitional hypoglycaemia"
+          "Exogenous insulin administration (e.g., Factitious & Fabricated Illness); request specific insulin analogue assays and contact the regional endocrine/CHI centre",
+          "Focal K-ATP channel CHI; request urgent 18F-DOPA PET-CT",
+          "Congenital hypopituitarism; start IV hydrocortisone immediately",
+          "Benign sample haemolysis; no further action needed"
         ],
-        answer: 1,
-        pearl: "Jaundice, midline defects/dysmorphic features, microphallus, and hyperpigmentation are classic clues to endocrine causes such as hypopituitarism or adrenal insufficiency. Hepatomegaly, lactic acidosis, and raised ammonia point toward metabolic disorders."
+        answer: 0,
+        pearl: "Detectable insulin with undetectable C-peptide during hypoglycaemia raises suspicion of exogenous insulin administration / Factitious and Fabricated Illness (FII). Request insulin analogue assays — keeping in mind that not all assays detect all insulin analogues — and liaise promptly with the regional endocrine/CHI centre."
       },
       {
         id: "q10",
         domain: "diagnosis",
+        source: "both",
         type: "multi",
-        section: "Appendix 1 • Syndromes & Risk Factors",
-        prompt: "Select ALL syndromes listed in Appendix 1 as associated with Hyperinsulinaemic Hypoglycaemia (HH):",
+        section: "Hypoglycaemia Screen • Deferred Sampling",
+        prompt: "If blood volume is limited during an acute hypoglycaemic episode, select ALL tests that MAY be taken immediately AFTER hypoglycaemia correction:",
+        options: [
+          "Plasma acylcarnitine",
+          "Plasma ammonia",
+          "Plasma amino acids",
+          "Plasma insulin & C-peptide",
+          "Blood 3β-hydroxybutyrate & free fatty acids"
+        ],
+        answers: [0, 1, 2],
+        pearl: "Both PIER Appendix 1 and UK Consensus Table 1 note that acylcarnitine, plasma amino acids, ammonia (plus electrolytes & LFTs) may be taken after correction. Critical fuel/hormone samples (glucose, lactate, insulin, C-peptide, FFA, BOHB, cortisol, GH) must be collected AT hypoglycaemia, plus first urine after hypo for organic acids/ketones."
+      },
+      {
+        id: "q11",
+        domain: "diagnosis",
+        source: "pier",
+        type: "multi",
+        section: "Syndromes Associated with Hyperinsulinaemic Hypoglycaemia",
+        prompt: "Select ALL syndromes listed in PIER Appendix 1 as associated with Hyperinsulinaemic Hypoglycaemia (HH):",
         options: [
           "Beckwith-Wiedemann syndrome (BWS)",
           "Kabuki syndrome",
@@ -809,46 +766,50 @@
           "Costello syndrome"
         ],
         answers: [0, 1, 2, 4],
-        pearl: "Appendix 1 lists 9 syndromes associated with HH: Beckwith-Wiedemann, Kabuki, Turner, Sotos, Costello, Simpson-Golabi-Behmel, Trisomy 13, Timothy, and Usher syndromes. (DiGeorge is associated with hypocalcaemia rather than Appendix 1 HH syndromes.)"
-      },
-      {
-        id: "q11",
-        domain: "diagnosis",
-        type: "multi",
-        section: "Appendix 1 • Hypoglycaemia Screen Sampling",
-        prompt: "If blood volume is limited during an acute hypoglycaemic episode, which of these hypoglycaemia screen tests MAY be taken immediately AFTER hypoglycaemia correction?",
-        options: [
-          "Plasma acylcarnitine",
-          "Plasma ammonia",
-          "Plasma amino acids",
-          "Plasma insulin & C-peptide",
-          "Blood 3β-hydroxybutyrate"
-        ],
-        answers: [0, 1, 2],
-        pearl: "Appendix 1 notes that acylcarnitine, plasma ammonia, and plasma amino acids may be taken immediately after hypoglycaemia correction if unable to obtain at the time of hypoglycaemia. Critical fuel/hormone samples (lab glucose, insulin, C-peptide, cortisol, GH, NEFA, BOHB) must be taken AT the time of hypoglycaemia. Remember first urine after hypo for ketones & organic acids!"
+        pearl: "PIER Appendix 1 lists 9 HH-associated syndromes: Beckwith-Wiedemann, Kabuki, Turner, Sotos, Costello, Simpson-Golabi-Behmel, Trisomy 13, Timothy, and Usher. Also check for endocrine red flags (jaundice, midline defects, microphallus, hyperpigmentation) and metabolic red flags (hepatomegaly, lactic acidosis, raised ammonia)."
       },
       {
         id: "q12",
-        domain: "acute",
+        domain: "diagnosis",
+        source: "uk",
         type: "mcq",
-        section: "Initial Clinical Approach • Immediate Rescue",
-        vignette: "A 3.2 kg neonate with suspected CHI has a blood glucose of 2.1 mmol/L. You have obtained your hypoglycaemia screen samples.",
-        prompt: "What is the immediate IV glucose management and recheck interval?",
+        section: "Rapid Genetic Testing & Focal CHI",
+        prompt: "In an infant with high GIR and early failure to respond to diazoxide, which rapid genetic test is prioritised by the UK National Consensus and why?",
         options: [
-          "2 mL/kg bolus of 10% glucose followed by continuous glucose infusion; recheck BG in 15 minutes (aim > 3.5 mmol/L)",
-          "5 mL/kg bolus of 10% glucose without continuous infusion; recheck BG in 30 minutes",
-          "2 mL/kg bolus of 20% glucose peripherally; recheck BG in 1 hour",
-          "Start 3-hourly expressed breast milk feeds immediately and avoid IV dextrose"
+          "Rapid analysis of ABCC8 and KCNJ11 genes to expedite identification of focal CHI (which may be surgically curable)",
+          "Whole-genome karyotyping for Trisomy 21 before starting any IV dextrose",
+          "Delaying all genetic testing until the child reaches 2 years of age",
+          "Routine testing of insulin receptor genes only, since K-ATP mutations are always diazoxide-responsive"
         ],
         answer: 0,
-        pearl: "Give 2 mL/kg bolus of 10% glucose followed immediately by a continuous glucose infusion (to prevent rebound hypoglycaemia), and recheck BG after 15 minutes to confirm normoglycaemia (> 3.5 mmol/L). Suspected CHI neonates should initially be managed on IV infusions rather than feeds to accurately calculate GIR and titrate volume."
+        pearl: "Patients requiring high doses of or unresponsive to diazoxide have a high likelihood of monogenic K-ATP channel CHI. Rapid ABCC8 and KCNJ11 analysis expedites identification of potential focal CHI (typically a paternal recessive variant), guiding 18F-DOPA PET-CT/MR imaging and potentially curative lesionectomy. Biallelic recessive ABCC8/KCNJ11 variants are typically diffuse and diazoxide-unresponsive."
       },
+
+      /* 3. ACUTE & GLUCAGON (5) */
       {
         id: "q13",
         domain: "acute",
+        source: "both",
+        type: "mcq",
+        section: "Immediate IV Glucose Bolus & Rebound Prevention",
+        vignette: "A 3.2 kg neonate with suspected CHI has BG 2.0 mmol/L. Hypoglycaemia screen bloods have just been drawn.",
+        prompt: "What is the immediate IV glucose management and post-bolus monitoring strategy?",
+        options: [
+          "Give 10% glucose bolus (2 mL/kg per PIER; 2.5 mL/kg initial then smaller 1–2 mL/kg boluses per UK Consensus to avoid rebound), followed immediately by continuous IV glucose infusion; recheck BG in 15 min aiming ≥ 3.5 mmol/L",
+          "Give 5 mL/kg of 10% glucose without continuous infusion and recheck BG in 60 minutes",
+          "Give 2 mL/kg of 20% glucose peripherally and switch straight to 3-hourly breast milk feeds",
+          "Avoid IV boluses completely and wait for lab insulin turnaround (2–3 days)"
+        ],
+        answer: 0,
+        pearl: "Give an immediate 10% glucose bolus (2 mL/kg in PIER; UK Consensus recommends 2.5 mL/kg initially and smaller 1–2 mL/kg subsequent boluses in CHI to prevent rebound hypoglycaemia), ALWAYS followed by continuous glucose infusion, with a 15-minute BG recheck aiming ≥ 3.5 mmol/L."
+      },
+      {
+        id: "q14",
+        domain: "acute",
+        source: "both",
         type: "slider",
-        section: "Initial Management • Vascular Access",
-        prompt: "Above what IV dextrose concentration should you consider early central venous access (long line or umbilical venous catheter)?",
+        section: "Central Venous Access Threshold",
+        prompt: "Above what IV dextrose concentration should you consider early central venous access (UVC, PICC, or long line)?",
         unit: "% dextrose",
         prefix: ">",
         min: 5,
@@ -857,233 +818,418 @@
         defaultVal: 10,
         answer: 12.5,
         tolerance: 0,
-        pearl: "Consider central venous access (long line or UVC) early whenever a glucose concentration > 12.5% is required to maintain normoglycaemia."
-      },
-      {
-        id: "q14",
-        domain: "acute",
-        type: "mcq",
-        section: "Management 0–48 hrs • Fluid Volume Titration",
-        prompt: "During the first 0–48 hours, what total fluid volume should you aim to restrict a term neonate to (and a preterm neonate with higher pulmonary hypertension risk) by stepping up dextrose concentration?",
-        options: [
-          "150 mL/kg/day (term) and 140 mL/kg/day (preterm)",
-          "130 mL/kg/day (term) and 120 mL/kg/day (preterm)",
-          "100 mL/kg/day (term) and 80 mL/kg/day (preterm)",
-          "No fluid restriction is needed until 7 days after starting diazoxide"
-        ],
-        answer: 1,
-        pearl: "Increase glucose concentration to reduce total fluid volume to 130 mL/kg/day (consider 120 mL/kg/day in preterm neonates due to higher pulmonary hypertension risk) in preparation for potential diazoxide therapy, minimising severe fluid retention."
+        pearl: "Consider early central venous access whenever > 12.5% dextrose (typically 15–20% centrally) is required to maintain normoglycaemia and allow safe fluid restriction."
       },
       {
         id: "q15",
         domain: "acute",
+        source: "both",
         type: "mcq",
-        section: "Management 0–48 hrs • Escalation vs Weaning",
-        prompt: "If you CANNOT reduce fluid volume to 130 mL/kg/day despite high-concentration IV glucose infusions, what is the recommended next step in the first 0–48 hours?",
+        section: "Fluid Volume Restriction Prior to Diazoxide",
+        prompt: "Before commencing diazoxide, what total fluid restriction is recommended in term neonates versus preterm neonates at higher risk of pulmonary hypertension?",
         options: [
-          "Start an IV or subcutaneous glucagon infusion to maintain normoglycaemia",
-          "Commence oral diazoxide immediately without discussing with endocrine or restricting fluids",
-          "Increase total IV fluid volume to 180 mL/kg/day using 10% dextrose",
-          "Administer IV hydrocortisone as first-line monotherapy"
+          "180 mL/kg/day (term) and 150 mL/kg/day (preterm)",
+          "130 mL/kg/day (UK Consensus: 130–150 mL/kg/day for 24–48 h prior, avoiding > 150 mL/kg/day in first 2 weeks) in term neonates, and 120 mL/kg/day in preterm neonates",
+          "90 mL/kg/day in all term and preterm neonates",
+          "Fluid restriction is only required if the baby is also on octreotide"
         ],
-        answer: 0,
-        pearl: "If unable to reduce fluid volume further using high concentrations of glucose, start an IV or SC glucagon infusion (starting at 2.5–5 mcg/kg/hr, up to 20 mcg/kg/hr). Conversely, if volume is reduced to 130 mL/kg/day without glucagon and BG stays persistently > 5–6 mmol/L, consider slowly weaning glucose (possible transient HI)."
+        answer: 1,
+        pearl: "Step up dextrose concentration (and add glucagon if needed) to restrict total fluids to 130 mL/kg/day in PIER (130–150 mL/kg/day for 24–48 h pre-diazoxide in UK Consensus; avoid > 150 mL/kg/day in first 2 weeks), or 120 mL/kg/day in preterm neonates at higher risk of pulmonary hypertension."
       },
       {
         id: "q16",
-        domain: "pharmacology",
+        domain: "acute",
+        source: "uk",
         type: "mcq",
-        section: "Appendix 2 • Diazoxide Mechanism & Dosing",
-        prompt: "How does diazoxide work at the pancreatic β-cell, and what is its typical initial dosing schedule?",
+        section: "Glucagon Infusion • Practical Line Management",
+        prompt: "Which nursing and line-care practices reduce glucagon precipitation and catheter occlusion during a continuous IV glucagon infusion?",
         options: [
-          "Closes K-ATP channels; start 10–15 mg/kg/day once daily",
-          "Binds K-ATP channels keeping them OPEN (preventing depolarisation & insulin release); start 2–5 mg/kg/day in 3 divided doses",
-          "Blocks somatostatin receptors on β-cells; start 2–5 mcg/kg/hr IV infusion",
-          "Inhibits hepatic glycogenolysis; start 7 mg/kg/day in 2 divided doses"
+          "Dilute in 0.9% NaCl or 5% dextrose, change syringe/set every 12 h (12–24 h), avoid line filters, avoid running with PN or > 15% dextrose, and co-infuse clear fluids down the same line",
+          "Always place an inline micron filter, mix directly into parenteral nutrition, and change the syringe every 72 hours",
+          "Infuse only with 20% dextrose in the same lumen to stabilise the peptide",
+          "Send babies home on continuous aqueous subcutaneous glucagon pumps once stabilised"
         ],
-        answer: 1,
-        pearl: "Diazoxide holds the β-cell K-ATP channel in an open configuration, preventing depolarisation and insulin release. Start at 2–5 mg/kg/day in 3 divided doses (preferably Proglycem; max 20 mg/kg/day) as advised by the Southampton Paediatric Endocrine Team."
+        answer: 0,
+        pearl: "Aqueous glucagon precipitates/fibrillates easily (which is also why home continuous SC glucagon pumps are not currently available, though soluble glucagon analogues are in trials). UK Consensus: dilute in 0.9% NaCl or 5% dextrose, change every 12–24 h (PIER: every 12 h; rotate SC site every 3 d), avoid line filters, avoid PN or > 15% dextrose in the same line, and run clear fluids alongside."
       },
       {
         id: "q17",
-        domain: "pharmacology",
-        type: "multi",
-        section: "Management Beyond 48 hrs • Pre-Diazoxide Checklist",
-        prompt: "Before starting diazoxide in a Wessex neonate, select ALL mandatory checklist steps from the PIER guideline:",
+        domain: "acute",
+        source: "uk",
+        type: "mcq",
+        section: "Glucagon Side Effects & Central Line Thrombosis",
+        prompt: "Beyond line occlusion and the classic skin rash necrolytic migratory erythema (NME), what serious systemic risk of prolonged high-dose glucagon + high-concentration (≥ 15%) central glucose does the UK Consensus highlight?",
         options: [
-          "Discuss with the Paediatric Endocrine Team in Southampton (within working hours)",
-          "Reduce total fluids to 130 mL/kg/day (or 120 mL/kg/day in preterm neonates)",
-          "Obtain a baseline echocardiogram (and plan repeat echo at 10–14 days, especially if cardiac concerns)",
-          "Counsel parents on side effects and check baseline FBC (with ongoing U&Es/fluid balance monitoring)",
-          "Stop IV/SC glucagon completely 24 hours BEFORE the first dose of diazoxide"
+          "Coagulopathy / central venous catheter-related thrombosis — consider prophylactic anticoagulation with enoxaparin",
+          "Severe irreversible hyperthyroidism — start carbimazole prophylactically",
+          "Severe hyponatraemia requiring hypertonic saline",
+          "Biliary gallstones requiring prophylactic ursodeoxycholic acid"
         ],
-        answers: [0, 1, 2, 3],
-        pearl: "All four pre-diazoxide checklist items are essential! Do NOT stop glucagon before starting diazoxide — continue glucagon and only start weaning it once diazoxide is commenced and blood glucose remains > 3.5 mmol/L."
+        answer: 0,
+        pearl: "Prolonged glucagon can cause NME (resolves on stopping), vomiting, weight loss, and coagulopathy. Particularly in infants requiring high-concentration (≥ 15%) central glucose, the UK Consensus recommends considering prophylactic anticoagulation with enoxaparin to prevent central venous catheter-related thrombosis."
       },
+
+      /* 4. DIAZOXIDE & OCTREOTIDE (6) */
       {
         id: "q18",
         domain: "pharmacology",
+        source: "both",
         type: "mcq",
-        section: "Appendix 2 • Chlorothiazide & Side Effects",
-        prompt: "Why is chlorothiazide co-prescribed with diazoxide, what is its standard dose, and which electrolyte abnormality is its key listed risk?",
+        section: "Diazoxide Mechanism, Dosing & Unresponsiveness",
+        prompt: "How does diazoxide act on pancreatic β-cells, what is its initial dose, and above what dose does the UK Consensus note it is rarely effective?",
         options: [
-          "Enhances K-ATP opening; 1 mg/kg OD; hyperkalaemia",
-          "Prevents diazoxide-induced fluid retention; 3–5 mg/kg BD (7 mg/kg/day in 2 divided doses); hyponatraemia",
-          "Prevents hypertrichosis; 2 mg/kg TDS; hypernatraemia",
-          "Reduces risk of NEC; 10 mg/kg OD; hypocalcaemia"
+          "Binds SUR1 to hold K-ATP channels OPEN (reducing Ca²⁺ influx & insulin release); start 2–5 mg/kg/day (divided 2–3 doses; max 20 mg/kg/day); doses > 15 mg/kg/day are rarely effective and unresponsive diazoxide can be stopped abruptly",
+          "Closes K-ATP channels; start 10 mg/kg/day OD; must always be weaned slowly over 6 weeks even if completely ineffective",
+          "Activates somatostatin receptors; start 5 mcg/kg/day SC; escalate up to 30 mcg/kg/day",
+          "Blocks hepatic insulin receptors; start 7 mg/kg/day BD; always combine with octreotide from Day 1"
         ],
-        answer: 1,
-        pearl: "Chlorothiazide (3–5 mg/kg BD; Appendix 2 lists 7 mg/kg/day in 2 divided doses) prevents diazoxide-related fluid retention. Monitor fluid balance and U&Es because its key listed risk is hyponatraemia. On higher diazoxide doses, Southampton may advise switching to furosemide + spironolactone."
+        answer: 0,
+        pearl: "Diazoxide keeps the β-cell K-ATP channel open. Start at 2–5 mg/kg/day in 2–3 divided doses (use the lower end in perinatal-stress/IUGR/SGA HI which is often very sensitive). Escalate up to 20 mg/kg/day, though > 15 mg/kg/day rarely adds efficacy. If unresponsive, stop abruptly (no taper needed) and avoid combination therapies."
       },
       {
         id: "q19",
         domain: "pharmacology",
-        type: "mcq",
-        section: "Management Beyond 48 hrs • Glucagon Nursing & Weaning",
-        prompt: "A baby on IV glucagon (5 mcg/kg/hr) and 15% dextrose starts diazoxide. Blood sugars stabilise at 6.8–7.9 mmol/L. How should glucagon be weaned, and what are glucagon's key nursing intervals?",
-        options: [
-          "Halve glucagon rate every 4–8 hours (or every 2 hours if BG > 8 mmol/L); stop glucagon BEFORE weaning dextrose concentration. Change syringe/set every 12 h & rotate SC site every 3 days.",
-          "Wean dextrose concentration to 5% first, then stop glucagon abruptly; change syringe every 48 h.",
-          "Reduce glucagon by 10% once daily; change syringe every 24 h & rotate SC site every 7 days.",
-          "Continue glucagon at full dose for 14 days regardless of BG to prevent necrolytic migratory erythema."
-        ],
-        answer: 0,
-        pearl: "Once diazoxide is commenced, halve glucagon every 4–8 hours if BG > 3.5 mmol/L (or every 2 hours if BG > 8 mmol/L). Once glucagon is stopped, wean the glucose concentration. Practical Appendix 2 points: change glucagon syringe/set every 12 hours, rotate SC site every 3 days, and watch for IV-line occlusion and necrolytic migratory erythema."
+        source: "uk",
+        type: "slider",
+        section: "UK Networked Care • Escalation Threshold",
+        prompt: "Under the UK National Consensus networked care model, at or above what diazoxide dose (due to insufficient response) should a local hospital discuss potential transfer with the specialist CHI centre?",
+        unit: "mg/kg/day",
+        prefix: "≥",
+        min: 3,
+        max: 15,
+        step: 1,
+        defaultVal: 10,
+        answer: 7,
+        tolerance: 0,
+        pearl: "UK Consensus: patients responding to diazoxide < 7 mg/kg/day without side effects can usually remain under local/regional network care. Escalating to ≥ 7 mg/kg/day, side effects, persistent IV dextrose, need for octreotide, or surgical central access/pancreatic surgery triggers discussion with the specialist CHI centre."
       },
       {
         id: "q20",
-        domain: "discharge",
+        domain: "pharmacology",
+        source: "both",
         type: "multi",
-        section: "Escalation • Specialist CHI Centre (GOSH)",
-        prompt: "Select ALL criteria that warrant discussion and/or transfer to the specialist CHI centre (GOSH):",
+        section: "Pre-Diazoxide Safety Checklist & Monitoring",
+        prompt: "Select ALL mandatory steps before starting and while monitoring diazoxide therapy:",
         options: [
-          "Unresponsive to diazoxide (2nd-line therapy such as octreotide needed — e.g., focal or genetic CHI)",
-          "IV fluid requirement > 10 days and high GIR > 20 mg/kg/min",
-          "Contraindications to diazoxide (cardiac dysfunction or risk of NEC) or diazoxide side effects",
-          "Family history of CHI or uncertainty of diagnosis",
-          "Transient hypoglycaemia at 12 hours of age responding to 10% dextrose at GIR 6 mg/kg/min"
+          "Discuss with regional Paediatric Endocrine Team (e.g., Southampton in Wessex) and restrict fluids (130 mL/kg/day; 120 mL/kg/day if preterm)",
+          "Obtain baseline echocardiogram before starting (and repeat at 10–14 days if clinical/cardiac concerns) to screen for pulmonary hypertension (occurs in 2–7%)",
+          "Co-prescribe chlorothiazide (7 mg/kg/day in 2 divided doses / 3–5 mg/kg BD) to prevent fluid retention and monitor U&Es for hyponatraemia",
+          "Monitor FBC (neutropenia/thrombocytopenia in up to 9%), U&Es, and urate/uric acid every 4–6 months",
+          "Halve the diazoxide dose — rather than stopping it — if pulmonary hypertension develops"
         ],
         answers: [0, 1, 2, 3],
-        pearl: "GOSH referral criteria include: diagnostic uncertainty, inability to maintain BG > 3.5, diazoxide side effects, diazoxide unresponsiveness needing 2nd-line therapy (e.g., octreotide), IV fluids > 10 days with GIR > 20 mg/kg/min, family history of CHI, diazoxide contraindications (cardiac dysfunction / NEC risk), and central venous access difficulties."
+        pearl: "Critical safety point from the UK Consensus: if pulmonary hypertension is suspected, DISCONTINUE diazoxide immediately — dose reduction is NOT effective! Restrict fluids, support BG with dextrose/glucagon, and obtain urgent cardiology review."
       },
       {
         id: "q21",
-        domain: "discharge",
+        domain: "pharmacology",
+        source: "uk",
         type: "mcq",
-        section: "Discharge Planning • Pre-Discharge Safety Fast",
-        prompt: "Which statement accurately describes the pre-discharge safety fast for a baby stabilised on diazoxide?",
+        section: "Long-Term Diazoxide • 'Outgrowing the Dose' & Chlorothiazide",
+        prompt: "A thriving 14-month-old on stable low-dose diazoxide (now 2.4 mg/kg/day after weight gain) and chlorothiazide has had no hypoglycaemia. What does the UK Consensus advise?",
         options: [
-          "A 4-hour fast on the postnatal ward with IV cannula removed beforehand; safe if BG > 3.0 mmol/L",
-          "A 6-hour fast with 1-to-1 nursing and IV access in situ; hourly BG once past normal feed interval; safe to discharge on diazoxide if BG remains > 3.5 mmol/L",
-          "An 8-hour overnight fast; only required if the baby had seizures during NICU admission",
-          "Not required if diazoxide was weaned and stopped in NICU for suspected transient HI"
+          "Always increase diazoxide with every kg gained to stay at 5 mg/kg/day and continue chlorothiazide lifelong",
+          "Allow the child to 'outgrow the dose' rather than escalating mg/kg; chlorothiazide can be safely discontinued beyond 1 year on small diazoxide doses (< 5 mg/kg/day), and supervised active reduction can be considered once < 2–3 mg/kg/day",
+          "Stop both drugs abruptly at home with no clinical supervision or follow-up safety fast",
+          "Switch immediately to monthly lanreotide injections"
         ],
         answer: 1,
-        pearl: "Perform a 6-hour fast with 1-to-1 nursing and IV access in situ, checking BG hourly once the baby reaches their normal feed interval (or sooner if symptomatic). Safe to discharge on diazoxide if BG > 3.5 mmol/L for 6 hours (or > 3.0 mmol/L if diazoxide was weaned/stopped for suspected transient HI). If BG drops < 3.0 mmol/L, complete a hypo screen and call Southampton."
+        pearl: "With stable glucoses, let children 'outgrow the dose'. Beyond 1 year of age, fluid retention is less problematic and chlorothiazide can safely be stopped if diazoxide is < 5 mg/kg/day. Once relative diazoxide dose falls < 2–3 mg/kg/day, supervised home dose reduction (e.g., via specialist nurse virtual clinics) can be considered, generally followed by an age-appropriate inpatient safety fast after withdrawal."
       },
       {
         id: "q22",
-        domain: "discharge",
+        domain: "pharmacology",
+        source: "uk",
         type: "mcq",
-        section: "Discharge Planning • Home Monitoring & Follow-up",
-        prompt: "Which home care and follow-up plan matches the PIER guideline for an infant discharged on diazoxide?",
+        section: "Second-Line Therapy • Octreotide Dosing & Tachyphylaxis",
+        prompt: "Which statement accurately describes second-line short-acting octreotide therapy for diazoxide-unresponsive CHI?",
         options: [
-          "Check BG twice daily (longest fasts), never fast > 6 h, target 3.5–8 mmol/L; treat < 3.5 with GlucoGel & ring local hospital; ring if persistently > 8 mmol/L; open ward access & local follow-up at 6 and 12 weeks",
-          "Check BG once weekly, target 2.6–10 mmol/L, treat < 2.6 with an extra milk feed only; GP follow-up at 6 months",
-          "Check BG every 2 hours around the clock for 3 months; stop diazoxide at home if any single reading is > 7 mmol/L",
-          "No home glucometer needed once the 6-hour safety fast is passed; review in Southampton at 1 year"
+          "Start 5 mcg/kg/day (SC 6–8 hourly or continuous pump) in a CHI centre, stepping up by 2.5 mcg/kg/day to max 30 mcg/kg/day; initial hyperglycaemia is commonly followed by tachyphylaxis after ~48 hours",
+          "Start 50 mcg/kg/day orally in any DGH; efficacy increases steadily after 48 hours without dose escalation",
+          "Long-acting monthly octreotide LAR or lanreotide is first-line in neonates under 1 month of age",
+          "Pasireotide is routinely recommended as third-line therapy outside research studies"
         ],
         answer: 0,
-        pearl: "Discharged infants on diazoxide require open access to their local paediatric ward, a glucometer/lancets/strips + GlucoGel, twice-daily BG checks (morning & pre-evening feed; 3× daily pre-feed + if symptomatic when unwell), max fast 6 hours, target 3.5–8 mmol/L, immediate call for BG < 3.5 (review in person if persistent or > 2 episodes/24 h) or persistently > 8 mmol/L, Southampton endocrine clinic, and local follow-up at 6 & 12 weeks."
+        pearl: "Octreotide (synthetic somatostatin analogue) should be started in a CHI specialist centre (or experienced regional centre) at 5 mcg/kg/day (max 30 mcg/kg/day). Expect initial hyperglycaemia followed by tachyphylaxis after ~48 h needing dose increments. Long-acting SSAs (octreotide LAR / lanreotide) are only considered over 6 months of age; pasireotide is not recommended outside research."
+      },
+      {
+        id: "q23",
+        domain: "pharmacology",
+        source: "uk",
+        type: "multi",
+        section: "Octreotide Monitoring & Side Effects",
+        prompt: "Select ALL recommended investigations and key risks associated with octreotide therapy in Table 2 of the UK National Consensus:",
+        options: [
+          "Baseline abdominal ultrasound and LFTs prior to initiation",
+          "Ongoing monitoring of LFTs, TFTs, growth, and annual abdominal ultrasound",
+          "Biliary sludging, gallstones (cholelithiasis), and hepatitis",
+          "Necrotising enterocolitis (NEC, via reduced splanchnic blood flow) and potential pituitary GH suppression",
+          "Hypertrichosis and coarse facial features as its most frequent complication"
+        ],
+        answers: [0, 1, 2, 3],
+        pearl: "Octreotide requires baseline abdominal US + LFTs, and ongoing LFTs, TFTs, growth tracking, and annual abdominal US due to risks of biliary sludge/gallstones, hepatitis, GI upset, NEC (reduced splanchnic flow), and pituitary hormone/GH suppression. (Hypertrichosis and coarse facies are classic diazoxide effects, not octreotide.)"
+      },
+
+      /* 5. FEEDS, DIET & MDT (4) */
+      {
+        id: "q24",
+        domain: "nutrition",
+        source: "uk",
+        type: "mcq",
+        section: "Glucose Polymers & Maximum Carbohydrate Concentration",
+        prompt: "When adding a glucose polymer to infant milk feeds under dietetic guidance, how should it be initiated and what is the maximum total carbohydrate concentration allowed?",
+        options: [
+          "Start at 1–2.5%, increase by 1–2% every 48 hours if tolerated (max 5% added), NOT exceeding 12.5% total carbohydrate including the milk's own carbohydrate",
+          "Start immediately at 10% added polymer to reach 20% total carbohydrate on Day 1",
+          "Add freely without dietetic input in preterm neonates at risk of NEC",
+          "Double the scoop count of standard formula powder without monitoring osmolarity or protein:energy ratio"
+        ],
+        answer: 0,
+        pearl: "Under paediatric/neonatal dietitian guidance, start glucose polymer at 1–2.5%, stepping up by 1–2% every 48 h if no vomiting/loose stools, to max 5% added (never > 12.5% total carbohydrate). Exercise extreme caution in neonates at risk of gut ischaemia/NEC due to increased solute osmolar load!"
+      },
+      {
+        id: "q25",
+        domain: "nutrition",
+        source: "uk",
+        type: "mcq",
+        section: "Protein-to-Energy Ratio & Breastfeeding Support",
+        prompt: "Why does the UK National Consensus recommend breast milk fortifiers (or protein supplementation) over simple glucose polymers alone in breastfed CHI infants, and what protein-to-energy ratio should be maintained?",
+        options: [
+          "Breast milk is naturally low in protein and carbohydrate supplements distort the protein-to-energy ratio, impairing growth; maintain protein-to-energy ratio between 7.5% and 12%",
+          "Breast milk contains too much protein and must be diluted with water; target protein-to-energy ratio < 3%",
+          "Breastfeeding is strictly contraindicated in all infants with CHI",
+          "Breast milk fortifiers are freely prescribable by all community GPs without hospital supply coordination"
+        ],
+        answer: 0,
+        pearl: "To support growth, maintain the protein-to-energy ratio between 7.5% and 12%. Support mothers to express EBM (and short feeds at breast if agreed). Because breast milk is low in protein, prefer preterm breast milk fortifiers (coordinate hospital supply post-discharge as they are not community-prescribable) or a protein supplement (e.g., Protifar)."
+      },
+      {
+        id: "q26",
+        domain: "nutrition",
+        source: "uk",
+        type: "mcq",
+        section: "Continuous Home Pump Feeds & Uncooked Cornstarch",
+        prompt: "Which feeding safety recommendations come directly from the UK National Consensus for continuous home feeds and uncooked cornstarch?",
+        options: [
+          "Prefer a gastrostomy over an NG tube for home pump feeds (with a spare pump & night alarm proximity); reserve uncooked cornstarch for children > 2 years (0.5 up to 2 g/kg/dose mixed at room temperature)",
+          "Use NG tubes indefinitely at home without a spare pump; start uncooked cornstarch at 2 g/kg/dose in 3-month-old infants",
+          "Mix uncooked cornstarch into boiling formula so it dissolves completely",
+          "Avoid Speech and Language Therapy (SLT) referral until school age"
+        ],
+        answer: 0,
+        pearl: "For home continuous feeds, a gastrostomy is preferred over an NG tube (aspiration risk), with a spare pump, tubing entanglement safety advice, night alarm proximity, and optional CGM alarm. Uncooked cornstarch is preferred > 2 years (mature intestinal disaccharidases), mixed at room temperature (0.5 to max 2 g/kg/dose). Early SLT input is vital for feeding problems and oral aversion."
+      },
+      {
+        id: "q27",
+        domain: "nutrition",
+        source: "uk",
+        type: "mcq",
+        section: "Weaning to Solid Foods",
+        prompt: "What does the UK National Consensus advise when weaning a term infant with CHI onto solid foods?",
+        options: [
+          "Start when developmentally ready and no later than 6 months, favouring complex carbohydrates and avoiding high-sugar purees (which risk postprandial rebound hypoglycaemia)",
+          "Delay all solid foods until 12 months of age to maintain strict milk GIR calculations",
+          "Offer high-sugar fruit purees at every meal to keep blood sugars elevated",
+          "Stop all regular weight monitoring once solids begin"
+        ],
+        answer: 0,
+        pearl: "Introduce solids when showing normal feeding cues and good head control, no later than 6 months (term). Focus on complex carbohydrates and avoid high-sugar purees early on, as rapid sugar absorption can trigger postprandial hypoglycaemia (reserve simple sugars for acute hypoglycaemia rescue)."
+      },
+
+      /* 6. SURGERY, DISCHARGE & CGM (5) */
+      {
+        id: "q28",
+        domain: "discharge",
+        source: "uk",
+        type: "mcq",
+        section: "Focal vs Diffuse CHI • Imaging & Surgical Strategy",
+        prompt: "How does surgical management differ between focal CHI and medically unresponsive diffuse CHI, and what long-term complications follow subtotal pancreatectomy?",
+        options: [
+          "Focal CHI (localised by 18F-DOPA PET-CT/MR) is treated with targeted lesionectomy (often curative); subtotal pancreatectomy is a LAST RESORT for refractory diffuse CHI and carries high risks of post-pancreatectomy diabetes and pancreatic exocrine insufficiency",
+          "Both focal and diffuse CHI are routinely treated with 95% subtotal pancreatectomy in the first week of life",
+          "18F-DOPA PET-CT is used only after subtotal pancreatectomy to check for diabetes",
+          "Subtotal pancreatectomy cures diffuse CHI with zero risk of diabetes or malabsorption"
+        ],
+        answer: 0,
+        pearl: "Differentiating focal from diffuse CHI (via genetics + 18F-DOPA PET-CT/MR) is pivotal: focal lesionectomy is pancreas-sparing and frequently curative. Subtotal pancreatectomy is a last resort for medically refractory diffuse CHI and requires lifelong surveillance for post-pancreatectomy diabetes and exocrine insufficiency."
+      },
+      {
+        id: "q29",
+        domain: "discharge",
+        source: "both",
+        type: "multi",
+        section: "Specialist CHI Centre (GOSH / National Network) Referral",
+        prompt: "Select ALL criteria that warrant urgent discussion and/or transfer to a specialist CHI centre (such as GOSH in the Wessex network):",
+        options: [
+          "Diazoxide dose ≥ 7 mg/kg/day (partial response) or diazoxide-unresponsive requiring 2nd-line octreotide",
+          "IV fluid requirement > 10 days with high GIR > 20 mg/kg/min, or difficulties with surgical central venous access",
+          "Contraindications to diazoxide (cardiac dysfunction, NEC risk) or unacceptable diazoxide side effects",
+          "Diagnostic uncertainty, family history of CHI, or anticipated pancreatic surgery",
+          "Transient neonatal hypoglycaemia at 12 h responding to 10% dextrose at GIR 6 mg/kg/min"
+        ],
+        answers: [0, 1, 2, 3],
+        pearl: "Combining PIER and UK Consensus referral criteria: diazoxide ≥ 7 mg/kg/day or unresponsiveness (needing octreotide), inability to maintain BG > 3.5, IV fluids > 10 d with GIR > 20, diazoxide contraindications/side effects, diagnostic uncertainty, family history of CHI, and surgical central venous access or pancreatic surgery."
+      },
+      {
+        id: "q30",
+        domain: "discharge",
+        source: "pier",
+        type: "mcq",
+        section: "Pre-Discharge 6-Hour Safety Fast",
+        prompt: "Which protocol accurately describes the PIER pre-discharge safety fast?",
+        options: [
+          "6-hour fast with 1-to-1 nursing and IV access in situ; hourly BG once past normal feed interval (or sooner if symptomatic); safe to discharge on diazoxide if BG > 3.5 mmol/L (> 3.0 mmol/L if weaned off for suspected transient HI)",
+          "4-hour fast with IV cannula removed beforehand; safe if BG > 2.6 mmol/L",
+          "12-hour overnight fast performed at home by parents after discharge",
+          "Not needed if diazoxide was weaned and stopped in NICU for suspected transient HI"
+        ],
+        answer: 0,
+        pearl: "Perform a supervised 6-hour safety fast with 1-to-1 nursing and IV access in situ (including when diazoxide was weaned off for suspected transient HI!). Pass thresholds: BG > 3.5 mmol/L on ongoing diazoxide, or > 3.0 mmol/L off diazoxide. If BG drops < 3.0 mmol/L, take a hypo screen and call Southampton Paediatric Endocrine."
+      },
+      {
+        id: "q31",
+        domain: "discharge",
+        source: "uk",
+        type: "mcq",
+        section: "Continuous Glucose Monitoring (CGM) in CHI",
+        prompt: "What is the UK National Consensus position on using Continuous Glucose Monitoring (CGM) at home in CHI?",
+        options: [
+          "CGM replaces capillary fingerprick testing completely because its low-glucose accuracy exceeds glucometers",
+          "CGM is NOT a standalone tool and has lower accuracy than glucometers — it helps flag trends between routine tests (e.g., on overnight pump feeds), and ANY CGM-detected hypoglycaemia MUST be verified with a point-of-care capillary blood glucose test",
+          "CGM is contraindicated in all children with CHI",
+          "Parents should double the diazoxide dose automatically whenever a CGM arrow trends down"
+        ],
+        answer: 1,
+        pearl: "UK Consensus: CGM is useful as an adjunct to guide point-of-care tests between routine checks (for example, alerting to overnight pump failure), but it is NOT a standalone tool and has lower accuracy than glucometers — every CGM low MUST be confirmed with a fingerprick blood glucose test."
+      },
+      {
+        id: "q32",
+        domain: "discharge",
+        source: "both",
+        type: "mcq",
+        section: "Home Safety Net, Follow-Up & Long-Term Outcomes",
+        prompt: "Which home care and long-term follow-up plan reflects BOTH the PIER guideline and UK National Consensus?",
+        options: [
+          "Open paediatric ward access, BD fingerprick checks (TDS + symptomatic if unwell), max 6 h fast, target 3.5–8 mmol/L, GlucoGel for < 3.5 & call hospital (also call if persistently > 8), local 6- & 12-week review, specialist clinic, and ongoing neurodevelopmental assessment",
+          "Check BG once weekly, discharge without GlucoGel, and discharge from follow-up if the 6-week weight is normal",
+          "Never contact the hospital unless BG is < 2.0 mmol/L on three consecutive days",
+          "Neurodevelopmental impairment only appears in the neonatal unit, so no later developmental follow-up is required"
+        ],
+        answer: 0,
+        pearl: "Home safety net (PIER): open ward access, glucometer/strips/lancets + GlucoGel, BD BG checks (TDS + symptomatic when unwell), max 6 h fast, target 3.5–8 mmol/L, ring local hospital for BG < 3.5 (review in person if persistent or > 2 episodes/24 h) or persistently > 8 mmol/L, and local 6- & 12-week follow-up alongside regional endocrine clinic. UK Consensus adds: neurodevelopmental challenges can present later, so ongoing neurodevelopmental & psychosocial review is essential!"
       }
     ];
 
+    /* 6-stage progressive On-Call Case Simulator uniting PIER + UK National Consensus */
     const CASE_SIM_QUESTIONS = [
       {
         id: "case1",
         domain: "acute",
+        source: "both",
         type: "mcq",
-        stageLabel: "Stage 1 of 5 • Day 1 Acute Hypoglycaemia",
+        stageLabel: "Stage 1 of 6 • Day 2 Acute Presentation",
         section: "On-Call Case • Baby A (3.0 kg, Term)",
-        vignette: "Baby A (3.0 kg, LGA, no maternal diabetes) presents on Day 2 with jitteriness and a bedside BG of 1.9 mmol/L. You draw a full hypoglycaemia screen (lab glucose, insulin, C-peptide, cortisol, GH, NEFA, BOHB, lactate, blood gas).",
-        prompt: "What is your immediate IV dextrose prescription and next check?",
+        vignette: "Baby A (3.0 kg, LGA, no maternal diabetes) presents on Day 2 with jitteriness and peripheral BG 1.9 mmol/L. You take a full hypoglycaemia screen before treating (prioritising peripheral plasma glucose & serum insulin).",
+        prompt: "What is your immediate IV dextrose management and recheck interval?",
         options: [
-          "6 mL (2 mL/kg) IV bolus of 10% glucose, immediately followed by continuous IV glucose infusion; recheck BG in 15 minutes aiming > 3.5 mmol/L",
-          "15 mL (5 mL/kg) IV bolus of 10% glucose, then observe off fluids and recheck BG in 60 minutes",
-          "Give 30 mL formula by NG tube and repeat bedside BG in 30 minutes",
-          "Wait for lab insulin result before starting any dextrose infusion"
+          "10% glucose IV bolus (2 mL/kg = 6 mL per PIER; or 2.5 mL/kg initial per UK Consensus), immediately followed by continuous IV glucose infusion; recheck BG in 15 minutes aiming ≥ 3.5 mmol/L",
+          "15 mL (5 mL/kg) IV bolus of 10% glucose, observe off fluids, and recheck BG in 60 minutes",
+          "Give 30 mL formula via NG tube and avoid IV access",
+          "Wait 48 hours for insulin results before giving IV glucose"
         ],
         answer: 0,
-        pearl: "2 mL/kg of 10% glucose for a 3.0 kg baby is 6 mL IV, immediately followed by continuous glucose infusion to prevent rebound hypoglycaemia. Recheck BG after 15 minutes aiming > 3.5 mmol/L."
+        pearl: "Treat promptly after drawing hypo screen samples: 10% glucose IV bolus followed immediately by continuous IV infusion (preventing rebound hypoglycaemia), and recheck BG at 15 minutes aiming ≥ 3.5 mmol/L."
       },
       {
         id: "case2",
         domain: "definitions",
+        source: "both",
         type: "mcq",
-        stageLabel: "Stage 2 of 5 • Calculating GIR & Line Planning",
+        stageLabel: "Stage 2 of 6 • GIR Calculation & Glucagon Infusion",
         section: "On-Call Case • Baby A (3.0 kg)",
-        vignette: "By 36 hours, Baby A requires 15% IV glucose at 150 mL/kg/day (18.75 mL/hr) to maintain BG > 3.5 mmol/L. Lab results return: glucose 1.8 mmol/L, insulin 9.4 mU/L, C-peptide 410 pmol/L, suppressed BOHB and NEFA.",
-        prompt: "What is Baby A's GIR, and what vascular access / fluid step is required?",
+        vignette: "At 40 hours, Baby A requires 15% IV glucose at 150 mL/kg/day (18.75 mL/hr) to stay > 3.5 mmol/L. Hypo screen returns: glucose 1.8 mmol/L, insulin 9.4 mU/L, C-peptide 410 pmol/L, suppressed BOHB and FFA.",
+        prompt: "What is Baby A's GIR, and what vascular access + glucagon steps are appropriate?",
         formulaHint: "Rate = (150 × 3.0) ÷ 24 = 18.75 mL/hr  |  GIR = (15 × 18.75) ÷ (3.0 × 6)",
         options: [
-          "GIR 15.6 mg/kg/min — requires central venous access (> 12.5% dextrose) and start IV/SC glucagon (e.g. 5 mcg/kg/hr) to allow fluid restriction to 130 mL/kg/day",
-          "GIR 9.4 mg/kg/min — continue peripheral cannula and increase fluid volume to 180 mL/kg/day",
-          "GIR 7.5 mg/kg/min — within normal transitional range; switch directly to breast feeds",
-          "GIR 22.0 mg/kg/min — immediately transfer to GOSH before discussing with Southampton"
+          "GIR 15.6 mg/kg/min — use central venous access (> 12.5% dextrose), start glucagon 2.5–5 mcg/kg/hr (no line filter, change set q12h, avoid mixing with > 15% dextrose/PN) to reduce fluids to 130 mL/kg/day",
+          "GIR 7.5 mg/kg/min — normal transitional requirement; switch to 3-hourly EBM",
+          "GIR 15.6 mg/kg/min — run 15% dextrose and glucagon through the same peripheral cannula with an inline filter",
+          "GIR 22.0 mg/kg/min — stop all fluids and start oral cornstarch"
         ],
         answer: 0,
-        pearl: "GIR = (15 × 18.75) ÷ 18 = 15.6 mg/kg/min (> 8 mg/kg/min + biochemical hyperinsulinism = CHI). Concentration > 12.5% needs central venous access (UVC/long line). Starting glucagon at 5 mcg/kg/hr helps wean total IV fluid volume down to 130 mL/kg/day prior to diazoxide."
+        pearl: "GIR = (15 × 18.75) ÷ 18 = 15.6 mg/kg/min (> 8 mg/kg/min + hypoketotic hyperinsulinism = CHI). Dextrose > 12.5% needs central venous access. Adding glucagon (e.g., 5 mcg/kg/hr) enables fluid restriction to 130 mL/kg/day before diazoxide; avoid line filters and > 15% dextrose in the glucagon lumen to prevent precipitation."
       },
       {
         id: "case3",
         domain: "pharmacology",
+        source: "pier",
         type: "mcq",
-        stageLabel: "Stage 3 of 5 • Initiating First-Line Therapy (> 48 h)",
+        stageLabel: "Stage 3 of 6 • Initiating Diazoxide & Chlorothiazide",
         section: "On-Call Case • Baby A (3.0 kg)",
-        vignette: "On glucagon 5 mcg/kg/hr, fluids are successfully weaned to 130 mL/kg/day of 15% glucose. Baseline echocardiogram is normal, baseline FBC/U&Es are checked, parents are counselled, and you discuss Baby A with the Southampton Paediatric Endocrine Team.",
-        prompt: "Southampton advises starting diazoxide at 5 mg/kg/day in 3 divided doses plus chlorothiazide at 3 mg/kg BD. What is the exact oral prescription for this 3.0 kg baby?",
+        vignette: "Fluids are restricted to 130 mL/kg/day on glucagon 5 mcg/kg/hr. Baseline ECHO is normal, baseline FBC/U&Es checked, parents counselled, and Southampton Paediatric Endocrine advises starting diazoxide 5 mg/kg/day in 3 divided doses + chlorothiazide 3 mg/kg BD.",
+        prompt: "What is Baby A's exact oral prescription, and what happens to the glucagon infusion right now?",
         options: [
-          "Diazoxide 5 mg PO TDS + Chlorothiazide 9 mg PO BD (continue glucagon 5 mcg/kg/hr initially)",
-          "Diazoxide 15 mg PO TDS + Chlorothiazide 3 mg PO BD (stop glucagon immediately)",
-          "Diazoxide 5 mg PO OD + Chlorothiazide 9 mg PO OD (wean dextrose by half today)",
-          "Diazoxide 10 mg PO BD + Furosemide 3 mg PO BD"
+          "Diazoxide 5 mg PO TDS + Chlorothiazide 9 mg PO BD; CONTINUE glucagon 5 mcg/kg/hr until BG stabilises on diazoxide",
+          "Diazoxide 15 mg PO TDS + Chlorothiazide 3 mg PO BD; stop glucagon immediately before the first dose",
+          "Diazoxide 5 mg PO OD + Chlorothiazide 9 mg PO OD; stop IV dextrose immediately",
+          "Diazoxide 10 mg PO BD without diuretic to avoid hyponatraemia"
         ],
         answer: 0,
-        pearl: "Matches the exact PIER guideline Case Example! 5 mg/kg/day × 3 kg = 15 mg/day ÷ 3 = 5 mg PO TDS. Chlorothiazide 3 mg/kg × 3 kg = 9 mg PO BD. Continue glucagon until diazoxide takes effect."
+        pearl: "5 mg/kg/day × 3 kg = 15 mg/day ÷ 3 = 5 mg PO TDS. Chlorothiazide 3 mg/kg × 3 kg = 9 mg PO BD. Always continue glucagon until diazoxide takes effect, then halve glucagon every 4–8 h if BG > 3.5 (every 2 h if > 8) and stop glucagon before weaning dextrose."
       },
       {
         id: "case4",
         domain: "pharmacology",
+        source: "uk",
         type: "mcq",
-        stageLabel: "Stage 4 of 5 • Weaning Strategy",
+        stageLabel: "Stage 4 of 6 • Partial Response & Network Escalation",
         section: "On-Call Case • Baby A (3.0 kg)",
-        vignette: "48 hours after starting diazoxide and chlorothiazide, Baby A's blood glucose stabilises between 6.8 and 7.9 mmol/L.",
-        prompt: "What is the correct sequence to wean Baby A's infusions?",
+        vignette: "Five days later, despite stepping diazoxide up to 8 mg/kg/day, Baby A still has recurrent BG 2.4–2.9 mmol/L whenever glucagon is halved.",
+        prompt: "According to the UK National Consensus, what are the key next steps?",
         options: [
-          "Halve the glucagon infusion every 4–8 hours while BG > 3.5 mmol/L; once glucagon is stopped, wean dextrose concentration as feeds are introduced",
-          "Stop IV dextrose first while keeping glucagon running at 5 mcg/kg/hr for 1 week",
-          "Halve the diazoxide dose immediately because BG is above 6.5 mmol/L",
-          "Repeat baseline echocardiogram today and discontinue chlorothiazide"
+          "Discuss transfer with the specialist CHI centre (diazoxide ≥ 7 mg/kg/day / poor response), send rapid ABCC8 & KCNJ11 genetics (for potential focal CHI), and plan 2nd-line octreotide (baseline abdo US & LFTs; watch for 48 h tachyphylaxis)",
+          "Escalate diazoxide locally to 25 mg/kg/day and add pasireotide in the DGH",
+          "Discharge home on 8 mg/kg/day diazoxide with a CGM and no specialist referral",
+          "Book an immediate subtotal pancreatectomy without genetic testing or PET imaging"
         ],
         answer: 0,
-        pearl: "Wean glucagon first by halving the rate every 4–8 hours while BG > 3.5 mmol/L (or every 2 hours if BG > 8 mmol/L). Only once glucagon is stopped should you wean the glucose concentration as oral feeds advance. Remember repeat echo at 10–14 days if clinical/cardiac concerns."
+        pearl: "UK Consensus threshold: escalating diazoxide to ≥ 7 mg/kg/day due to insufficient response triggers discussion with the specialist CHI centre. Send rapid ABCC8 & KCNJ11 genetics to expedite detection of focal CHI (18F-DOPA PET → lesionectomy). If unresponsive, stop diazoxide abruptly and initiate octreotide in the CHI centre."
       },
       {
         id: "case5",
-        domain: "discharge",
+        domain: "nutrition",
+        source: "uk",
         type: "mcq",
-        stageLabel: "Stage 5 of 5 • Preparing for Safe Discharge",
+        stageLabel: "Stage 5 of 6 • Dietetics & Enteral Transition",
         section: "On-Call Case • Baby A (3.0 kg)",
-        vignette: "Baby A is now fully orally fed on diazoxide 5 mg PO TDS and chlorothiazide 9 mg PO BD with stable pre-feed blood sugars of 4.6–6.2 mmol/L.",
-        prompt: "What MUST happen before Baby A goes home, and what safety net is arranged?",
+        vignette: "Baby A's genetics show no K-ATP variant, and after fine-tuning therapy at the regional/CHI centre, Baby A stabilises on enteral EBM feeds but still has mild pre-feed dips to 3.2 mmol/L. Mother wishes to keep providing breast milk.",
+        prompt: "What is the safest dietetic plan under the UK National Consensus?",
         options: [
-          "Pass a 6-hour safety fast (1-to-1 nursing, IV access in situ, BG > 3.5 mmol/L); train parents on twice-daily BG checks, 3.5–8 mmol/L target, GlucoGel, max 6 h fast; arrange open ward access, Southampton clinic & 6- and 12-week local follow-up",
-          "Pass a 3-hour fast without IV access; discharge with oral glucose solution and GP follow-up in 3 months",
-          "Stop diazoxide for 24 hours to test for transient HI before booking an outpatient fast",
-          "Transfer routinely to GOSH for a PET scan even though Baby A responded completely to low-dose diazoxide"
+          "Involve a paediatric/neonatal dietitian; maintain protein-to-energy ratio at 7.5–12% (consider breast milk fortifier or protein supplement alongside EBM; if adding glucose polymer start 1–2.5% and never exceed 12.5% total carbohydrate)",
+          "Add 8% glucose polymer to EBM immediately (15.2% total carb) without dietetic review",
+          "Advise stopping breast milk immediately and adding 1 g/kg uncooked cornstarch to bottles",
+          "Give sugary fruit juice between breastfeeds"
         ],
         answer: 0,
-        pearl: "A supervised 6-hour safety fast with 1-to-1 nursing and IV access in situ (maintaining BG > 3.5 mmol/L) confirms safe discharge dosing. Parents need full hypo/GlucoGel training, open local paediatric ward access, Southampton endocrine clinic, and local 6- & 12-week reviews."
+        pearl: "Always involve a paediatric/neonatal dietitian when fortifying feeds. Maintain protein-to-energy ratio between 7.5% and 12% (breast milk is low in protein, so fortifiers or Protifar protect growth), start glucose polymers at 1–2.5% (max 5% added; ≤ 12.5% total carb), and reserve uncooked cornstarch for children > 2 years."
+      },
+      {
+        id: "case6",
+        domain: "discharge",
+        source: "both",
+        type: "mcq",
+        stageLabel: "Stage 6 of 6 • Safe Discharge & Long-Term Plan",
+        section: "On-Call Case • Baby A",
+        vignette: "Baby A is now fully fed with stable blood sugars on maintenance therapy and is approaching discharge.",
+        prompt: "Which discharge and follow-up bundle satisfies BOTH PIER and the UK National Consensus?",
+        options: [
+          "Pass a 6-hour safety fast (1-to-1 nursing, IV access in situ, BG > 3.5 mmol/L); equip & train parents (BD checks, TDS + symptomatic if unwell, max 6 h fast, target 3.5–8 mmol/L, GlucoGel, confirm any CGM low with fingerprick); arrange open ward access, 6- & 12-week local review, endocrine clinic & ongoing neurodevelopmental follow-up",
+          "Perform a 3-hour fast without IV access; rely on CGM alarms alone without fingerprick confirmation",
+          "Discharge with a 12-hour overnight fast target and discharge from paediatrics once weight crosses the 50th centile",
+          "Keep chlorothiazide lifelong even after age 1 on low-dose diazoxide and never monitor FBC or urate"
+        ],
+        answer: 0,
+        pearl: "Complete discharge safety bundle: supervised 6-hour safety fast (1-to-1 nursing, IV access in situ, BG > 3.5 mmol/L), parent training + GlucoGel + glucometer (and fingerprick verification of any CGM low), open ward access, local 6- & 12-week follow-up, endocrine clinic (FBC/U&Es/urate q4–6m), and ongoing neurodevelopmental/psychosocial surveillance."
       }
     ];
 
@@ -1179,6 +1325,9 @@
         pool = customQuestions;
       } else if (mode === "case") {
         pool = CASE_SIM_QUESTIONS.map(q => ({ ...q }));
+      } else if (mode === "consensus") {
+        const ukOnly = QUESTION_BANK.filter(q => q.source === "uk");
+        pool = shuffle(ukOnly);
       } else {
         const filtered = state.selectedDomain === "all"
           ? QUESTION_BANK
@@ -1309,11 +1458,16 @@
         .replace(/"/g, "&quot;");
     }
 
+    function renderSourceBadge(sourceId) {
+      const s = SOURCES[sourceId] || SOURCES.both;
+      return `<span class="badge ${s.badgeClass}">${escapeHtml(s.label)}</span>`;
+    }
+
     function getRank(pct) {
-      if (pct >= 90) return { title: "Wessex CHI Consultant", note: "Guideline mastery across acute stabilisation, pharmacology, and safe discharge." };
-      if (pct >= 75) return { title: "Senior Neonatal Registrar", note: "Strong command of CHI management; review any missed thresholds below." };
-      if (pct >= 55) return { title: "Paediatric Trainee (ST3–5)", note: "Solid foundation — revisit GIR calculation, pre-diazoxide checks, and fast rules." };
-      return { title: "On-Call Starter", note: "Great warm-up run. Check the clinical pearls and quick-reference sheet, then retry!" };
+      if (pct >= 90) return { title: "UK CHI Network Consultant", note: "Complete command of acute stabilisation, networked escalation, pharmacology, dietetics, and safe discharge." };
+      if (pct >= 75) return { title: "Senior Neonatal / Endocrine Registrar", note: "Strong guideline mastery across both PIER and UK Consensus; check any missed pearls below." };
+      if (pct >= 55) return { title: "Paediatric Trainee (ST3–5)", note: "Good clinical foundation — revisit GIR math, diazoxide/octreotide monitoring, and feeding targets." };
+      return { title: "On-Call Starter", note: "Great warm-up run. Review the clinical pearls and Quick Reference sheet, then retry missed items!" };
     }
 
     function renderHome() {
@@ -1321,7 +1475,7 @@
       Object.keys(DOMAINS).forEach(k => {
         domainCounts[k] = QUESTION_BANK.filter(q => q.domain === k).length;
       });
-
+      const ukCount = QUESTION_BANK.filter(q => q.source === "uk").length;
       const filteredCount = domainCounts[state.selectedDomain];
       const quickCount = Math.min(10, filteredCount);
 
@@ -1345,10 +1499,13 @@
 
           <section class="surface-card stack-md">
             <div class="stack-xs">
-              <p class="eyebrow">PIER Network • Wessex Endocrine Guideline (v1.0)</p>
-              <h1 class="title-xl">Congenital Hyperinsulinism in Neonates</h1>
+              <div class="row-wrap">
+                <span class="badge badge-primary">PIER Network v1.0 (2024)</span>
+                <span class="badge badge-secondary">UK National Consensus (Front. Endocrinol. 2023)</span>
+              </div>
+              <h1 class="title-xl" style="padding-top: 4px;">Congenital Hyperinsulinism Clinical Quiz</h1>
               <p class="body-sm text-muted">
-                Test your clinical recall on acute stabilisation, GIR calculation, hypoglycaemia screens, diazoxide &amp; glucagon therapy, GOSH escalation, and pre-discharge safety fasts.
+                Master neonatal and paediatric CHI management across both the Wessex PIER guideline and the UK BSPED National Collaborative Consensus: GIR calculations, hypo screens, genetics, glucagon, diazoxide, octreotide, nutrition/MDT, surgery, CGM, and safe discharge.
               </p>
             </div>
 
@@ -1388,7 +1545,7 @@
                   <span class="font-bold" style="font-size: 16px;">Quick Shift</span>
                   <span class="badge badge-primary tabular">${quickCount} questions</span>
                 </div>
-                <p class="body-sm text-muted">Shuffled ward-break quiz mixing thresholds, GIR math, checklists, and clinical vignettes.</p>
+                <p class="body-sm text-muted">Shuffled ward-break quiz mixing thresholds, GIR math, checklists, pharmacology, and feeding pearls.</p>
               </div>
               <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m9 18 6-6-6-6"/>
@@ -1399,9 +1556,22 @@
               <div class="stack-xs">
                 <div class="row-wrap">
                   <span class="font-bold" style="font-size: 16px;">On-Call Case Simulator</span>
-                  <span class="badge badge-success">5-stage case</span>
+                  <span class="badge badge-success">6-stage case</span>
                 </div>
-                <p class="body-sm text-muted">Manage Baby A (3.0 kg) from Day 1 bolus and GIR calculation to diazoxide dosing, glucagon weaning, and 6-hour safety fast.</p>
+                <p class="body-sm text-muted">Follow Baby A (3.0 kg) from Day 2 rescue &amp; GIR to diazoxide dosing, ≥ 7 mg/kg/day escalation, rapid genetics, dietetics, and 6-hour discharge fast.</p>
+              </div>
+              <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+
+            <button id="start-consensus" type="button" class="mode-card">
+              <div class="stack-xs">
+                <div class="row-wrap">
+                  <span class="font-bold" style="font-size: 16px;">UK Consensus Deep Dive</span>
+                  <span class="badge badge-secondary tabular">${ukCount} questions</span>
+                </div>
+                <p class="body-sm text-muted">Focused drill on Shaikh et al. (2023) networked care: 7 mg/kg/day referral, octreotide, FII/C-peptide, glucose polymers, focal PET surgery &amp; CGM.</p>
               </div>
               <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m9 18 6-6-6-6"/>
@@ -1414,7 +1584,7 @@
                   <span class="font-bold" style="font-size: 16px;">Full Guideline Mastery</span>
                   <span class="badge badge-neutral tabular">${filteredCount} questions</span>
                 </div>
-                <p class="body-sm text-muted">Work through every question in ${state.selectedDomain === "all" ? "all 5 clinical domains" : DOMAINS[state.selectedDomain].label} with end-of-run domain breakdown.</p>
+                <p class="body-sm text-muted">Complete run through ${state.selectedDomain === "all" ? "all 6 clinical domains" : DOMAINS[state.selectedDomain].label} with domain mastery breakdown.</p>
               </div>
               <svg class="shrink-0 text-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m9 18 6-6-6-6"/>
@@ -1422,10 +1592,14 @@
             </button>
           </section>
 
-          <footer class="body-xs text-muted">
-            Educational tool based on the
-            <a class="ext-link" href="https://www.piernetwork.org/guidelines-hyperinsulinism.html" target="_blank" rel="noopener noreferrer">PIER Network CHI Guideline</a>
-            (v1.0, Approved 09/2024, Review 09/2027). Always verify local clinical protocols before prescribing.
+          <footer class="body-xs text-muted stack-xs">
+            <p>
+              Sources:
+              <a class="ext-link" href="https://www.piernetwork.org/guidelines-hyperinsulinism.html" target="_blank" rel="noopener noreferrer">PIER Network CHI Guideline (v1.0, 2024)</a>
+              &bull;
+              <a class="ext-link" href="https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2023.1231043/full" target="_blank" rel="noopener noreferrer">Shaikh et al., Front. Endocrinol. 2023 (UK National Consensus)</a>.
+            </p>
+            <p>Educational tool only — always verify local clinical protocols before prescribing.</p>
           </footer>
         </div>
       `;
@@ -1542,7 +1716,7 @@
               <strong class="body-sm font-bold ${state.lastCorrect ? "text-success" : "text-error"}">
                 ${escapeHtml(heading)}
               </strong>
-              <span class="body-xs text-muted">${escapeHtml(q.section)}</span>
+              ${renderSourceBadge(q.source)}
             </div>
             <p class="body-sm">${escapeHtml(q.pearl)}</p>
           </div>
@@ -1720,9 +1894,12 @@
               </div>
             ` : listToShow.map(rec => `
               <div class="surface-card stack-xs" style="padding: 16px 18px;">
-                <span class="body-xs font-bold ${rec.isCorrect ? "text-success" : "text-error"}">
-                  ${rec.isCorrect ? "✓ Correct" : (rec.timedOut ? "⏱ Timed out" : "✕ Missed")} • ${escapeHtml(rec.question.section)}
-                </span>
+                <div class="row-between" style="flex-wrap: wrap;">
+                  <span class="body-xs font-bold ${rec.isCorrect ? "text-success" : "text-error"}">
+                    ${rec.isCorrect ? "✓ Correct" : (rec.timedOut ? "⏱ Timed out" : "✕ Missed")} • ${escapeHtml(rec.question.section)}
+                  </span>
+                  ${renderSourceBadge(rec.question.source)}
+                </div>
                 <p class="body-sm font-bold">${escapeHtml(rec.question.prompt)}</p>
                 <p class="body-sm text-muted">${escapeHtml(rec.question.pearl)}</p>
               </div>
@@ -1739,50 +1916,61 @@
           <div class="ref-modal-panel stack-md">
             <div class="row-between" style="padding-bottom: 12px; border-bottom: 1px solid var(--border);">
               <div>
-                <h2 id="ref-title" class="title-md">PIER CHI Quick Reference</h2>
-                <p class="body-xs text-muted">Wessex Endocrine Network • Version 1.0 (09/2024)</p>
+                <h2 id="ref-title" class="title-md">CHI Clinical Quick Reference</h2>
+                <p class="body-xs text-muted">PIER Network (v1.0, 2024) + UK National Consensus (Shaikh et al., 2023)</p>
               </div>
               <button id="close-ref-btn" type="button" class="btn-secondary">Close</button>
             </div>
 
             <div class="stack-sm">
               <div class="surface-subtle">
-                <h3 class="eyebrow">Thresholds &amp; GIR</h3>
+                <h3 class="eyebrow">1. Thresholds, GIR &amp; Diagnosis</h3>
                 <ul class="ref-list">
-                  <li><strong>Hypoglycaemia:</strong> BG &lt; 3.0 mmol/L (screen at ≤ 3.0 mmol/L). <strong>CHI target:</strong> &gt; 3.5 mmol/L.</li>
-                  <li><strong>Normal GIR:</strong> 4–6 mg/kg/min. <strong>Suspect CHI:</strong> GIR &gt; 8 mg/kg/min.</li>
-                  <li><strong>GIR formula:</strong> (% glucose × mL/hr) ÷ (weight kg × 6).</li>
-                  <li><strong>Milk carb %:</strong> Breast milk 7.2% • Nutriprem 1 = 8.4% • Nutriprem 2 = 7.2%.</li>
-                  <li><strong>Biochemical CHI:</strong> BG &lt; 3 mmol/L, insulin &gt; 2 mU/L (&gt; 12 pmol/L), C-peptide &gt; 165.5 pmol/L, suppressed FFA &amp; BOHB. Repeat if initial screen done in first 48–72 h.</li>
+                  <li><strong>Investigate:</strong> BG ≤ 3.0 mmol/L • <strong>Treatment target:</strong> ≥ 3.5 mmol/L • <strong>Normal GIR:</strong> 4–6 mg/kg/min • <strong>Suspect CHI:</strong> GIR &gt; 8 mg/kg/min (10% dextrose at 5 mL/kg/hr = 8.3 mg/kg/min).</li>
+                  <li><strong>GIR formula:</strong> (% glucose × mL/hr) ÷ (weight kg × 6). Breast milk 7.2% • Nutriprem 1 = 8.4% • Nutriprem 2 = 7.2%.</li>
+                  <li><strong>Biochemistry:</strong> Insulin &gt; 2 mU/L (&gt; 12 pmol/L), C-peptide &gt; 165.5 pmol/L (≥ 0.5 ng/mL), suppressed FFA &amp; BOHB. Insulin half-life ~6 min (undetectable in up to 20% of CHI); prioritise peripheral glucose &amp; insulin if volume is small.</li>
+                  <li><strong>Exogenous insulin / FII:</strong> Detectable insulin + undetectable C-peptide → test specific insulin analogues.</li>
+                  <li><strong>Rapid genetics:</strong> Rapid <em>ABCC8</em> &amp; <em>KCNJ11</em> testing in diazoxide-unresponsive / high-GIR CHI to identify surgically curable focal CHI.</li>
                 </ul>
               </div>
 
               <div class="surface-subtle">
-                <h3 class="eyebrow">Acute &amp; 0–48 h Stabilisation</h3>
+                <h3 class="eyebrow">2. Acute Stabilisation &amp; Glucagon</h3>
                 <ul class="ref-list">
-                  <li><strong>Rescue:</strong> 2 mL/kg IV 10% glucose bolus + continuous infusion; recheck BG in 15 min (&gt; 3.5 mmol/L).</li>
-                  <li><strong>Central access (UVC/long line):</strong> Consider early if glucose &gt; 12.5%.</li>
-                  <li><strong>Fluid cap pre-diazoxide:</strong> Reduce to 130 mL/kg/day (120 mL/kg/day in preterm neonates).</li>
-                  <li><strong>Glucagon infusion (IV/SC):</strong> Start 2.5–5 mcg/kg/hr (max 20); change set q12h, rotate SC site q3d. Risks: line occlusion, necrolytic migratory erythema.</li>
+                  <li><strong>Rescue:</strong> 10% glucose bolus (2 mL/kg PIER; 2.5 mL/kg initial then 1–2 mL/kg subsequent per UK Consensus) + continuous IV infusion; recheck BG in 15 min.</li>
+                  <li><strong>Central venous access:</strong> Required when glucose &gt; 12.5% (15–20% centrally). Consider prophylactic <strong>enoxaparin</strong> if prolonged glucagon + ≥ 15% central glucose (coagulopathy/thrombosis risk).</li>
+                  <li><strong>Fluid cap pre-diazoxide:</strong> 130 mL/kg/day (UK Consensus: 130–150 mL/kg/day × 24–48 h; avoid &gt; 150 mL/kg/day in first 2 weeks); 120 mL/kg/day in preterm neonates.</li>
+                  <li><strong>Glucagon infusion:</strong> Start 2.5–5 mcg/kg/hr (step up 2.5, max 20). Dilute in 0.9% NaCl or 5% dextrose; change set q12h (12–24 h); avoid line filters &amp; PN / &gt; 15% dextrose in same line; rotate SC site q3d. Risks: occlusion, NME, coagulopathy.</li>
                 </ul>
               </div>
 
               <div class="surface-subtle">
-                <h3 class="eyebrow">Diazoxide &amp; Chlorothiazide (&gt; 48 h)</h3>
+                <h3 class="eyebrow">3. Diazoxide, Chlorothiazide &amp; Octreotide</h3>
                 <ul class="ref-list">
-                  <li><strong>Pre-start checklist:</strong> Discuss with Southampton Endocrine (working hours), fluids ≤ 130 (or 120 preterm) mL/kg/day, baseline echo (repeat 10–14 d), baseline FBC (q4–6m), counsel parents.</li>
-                  <li><strong>Diazoxide:</strong> Opens K-ATP channel; start 2–5 mg/kg/day in 3 divided doses (max 20; Proglycem). Risks: fluid retention, pulmonary HTN, hypertrichosis, coarse facies, neutropenia/thrombocytopenia, NEC.</li>
-                  <li><strong>Chlorothiazide:</strong> 3–5 mg/kg BD (7 mg/kg/day ÷ 2); prevents fluid retention. Risk: hyponatraemia (monitor U&amp;Es).</li>
-                  <li><strong>Weaning:</strong> Halve glucagon q4–8h if BG &gt; 3.5 (q2h if &gt; 8); stop glucagon before weaning dextrose.</li>
+                  <li><strong>Diazoxide (1st line):</strong> Opens K-ATP (SUR1). Start 2–5 mg/kg/day in 2–3 divided doses (max 20; &gt; 15 rarely effective — stop abruptly if unresponsive). Pre-start: Endocrine discussion, fluid restriction, baseline ECHO (repeat 10–14 d if concerns). Monitor FBC, U&amp;Es, urate q4–6m.</li>
+                  <li><strong>Pulmonary HTN (2–7%):</strong> STOP diazoxide immediately (dose reduction is ineffective), restrict fluids, urgent cardiology review.</li>
+                  <li><strong>Network escalation:</strong> Diazoxide <strong>≥ 7 mg/kg/day</strong>, side effects, persistent IV dextrose, or octreotide need → discuss transfer with specialist CHI centre.</li>
+                  <li><strong>Chlorothiazide:</strong> 7 mg/kg/day ÷ 2 (3–5 mg/kg BD); risk: hyponatraemia. Can stop &gt; 1 yr if diazoxide &lt; 5 mg/kg/day. Let stable children "outgrow the dose"; consider active wean &lt; 2–3 mg/kg/day.</li>
+                  <li><strong>Octreotide (2nd line, CHI centre):</strong> Start 5 mcg/kg/day SC q6–8h or pump (max 30); tachyphylaxis at ~48 h. Pre-start: Abdo US &amp; LFTs. Monitor LFTs, TFTs, growth, annual Abdo US. Risks: NEC, gallstones/sludge, GH suppression. Long-acting LAR/Lanreotide &gt; 6 months.</li>
                 </ul>
               </div>
 
               <div class="surface-subtle">
-                <h3 class="eyebrow">Discharge &amp; GOSH Referral</h3>
+                <h3 class="eyebrow">4. Nutrition, Feeding &amp; MDT</h3>
                 <ul class="ref-list">
-                  <li><strong>6-hour safety fast:</strong> 1-to-1 nursing, IV access in situ, hourly BG past normal feed interval. Pass: &gt; 3.5 mmol/L on diazoxide (&gt; 3.0 if transient/weaned off).</li>
-                  <li><strong>Home rules:</strong> Open ward access, BG checks BD (TDS + symptomatic if unwell), max fast 6 h, target 3.5–8 mmol/L, GlucoGel if &lt; 3.5 &amp; call hospital (also call if persistently &gt; 8), local review at 6 &amp; 12 weeks + Southampton clinic.</li>
-                  <li><strong>GOSH criteria:</strong> Diazoxide-unresponsive (needs octreotide), GIR &gt; 20 &amp; IV fluids &gt; 10 d, contraindications/side effects, family history, uncertain diagnosis, central access difficulty.</li>
+                  <li><strong>Glucose polymers (dietitian-led):</strong> Start 1–2.5%, increase 1–2% q48h to max 5% added — <strong>never &gt; 12.5% total carbohydrate</strong>. Extreme caution if NEC risk.</li>
+                  <li><strong>Protein:Energy ratio:</strong> Maintain <strong>7.5–12%</strong>. Breast milk is low in protein → consider preterm breast milk fortifiers (hospital supply) or Protifar.</li>
+                  <li><strong>Continuous home feeds:</strong> Prefer gastrostomy over NG tube + spare pump + night alarm proximity + optional CGM alarm.</li>
+                  <li><strong>Weaning &amp; Cornstarch:</strong> Complex carbs by 6 months (avoid sugary purees). Uncooked cornstarch preferred <strong>&gt; 2 years</strong> (0.5–2 g/kg/dose, room-temp liquid). Early SLT for oral aversion.</li>
+                </ul>
+              </div>
+
+              <div class="surface-subtle">
+                <h3 class="eyebrow">5. Surgery, Discharge &amp; CGM</h3>
+                <ul class="ref-list">
+                  <li><strong>Surgery:</strong> Focal CHI (18F-DOPA PET-CT/MR) → curative <strong>lesionectomy</strong>. Diffuse CHI → <strong>subtotal pancreatectomy</strong> only as last resort (high risk of post-pancreatectomy diabetes &amp; exocrine insufficiency).</li>
+                  <li><strong>6-hour safety fast:</strong> 1-to-1 nursing, IV access in situ, hourly BG past normal feed interval. Pass: &gt; 3.5 mmol/L on diazoxide (&gt; 3.0 if weaned off).</li>
+                  <li><strong>Home plan &amp; CGM:</strong> Open ward access, BD fingerpricks (TDS + symptomatic if unwell), max 6 h fast, target 3.5–8 mmol/L, GlucoGel if &lt; 3.5 &amp; ring hospital (also ring if persistently &gt; 8), 6- &amp; 12-week local review, endocrine clinic &amp; ongoing neurodevelopmental review. <strong>CGM is an adjunct only — verify every CGM low with a fingerprick test!</strong></li>
                 </ul>
               </div>
             </div>
@@ -1835,6 +2023,7 @@
         });
         document.getElementById("start-quick")?.addEventListener("click", () => startQuiz("quick"));
         document.getElementById("start-case")?.addEventListener("click", () => startQuiz("case"));
+        document.getElementById("start-consensus")?.addEventListener("click", () => startQuiz("consensus"));
         document.getElementById("start-full")?.addEventListener("click", () => startQuiz("full"));
       }
 

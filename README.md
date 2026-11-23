@@ -1,7 +1,9 @@
 # Congenital Hyperinsulinism Clinical Quiz
 
-An interactive, mobile- and desktop-friendly clinical quiz game based on the **PIER Network (Wessex Endocrine Network)** guideline:
-[Initial Assessment and Management of Congenital Hyperinsulinism in Neonates](https://www.piernetwork.org/guidelines-hyperinsulinism.html) (Version 1.0, Approved 09/2024, Review Due 09/2027).
+An interactive, zero-storage mobile- and desktop-friendly clinical quiz game integrating two UK clinical resources:
+
+1. **PIER Network (Wessex Endocrine Network):** [Initial Assessment and Management of Congenital Hyperinsulinism in Neonates](https://www.piernetwork.org/guidelines-hyperinsulinism.html) (Version 1.0, Approved 09/2024, Review Due 09/2027)
+2. **UK National Collaborative Consensus (BSPED CHI SIG & Children's Hyperinsulinism Charity):** [Standardised practices in the networked management of congenital hyperinsulinism: a UK national collaborative consensus](https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2023.1231043/full) (*Front. Endocrinol.* 2023;14:1231043, Shaikh MG et al.)
 
 ## Play Online
 
@@ -13,10 +15,11 @@ An interactive, mobile- and desktop-friendly clinical quiz game based on the **P
 - **100% self-contained:** Single HTML file with inline CSS and JavaScript — loads instantaneously on mobile and desktop browsers, including behind hospital Wi-Fi firewalls.
 - Closing or refreshing the browser tab resets the session completely.
 
-## Modes Included
+## Modes & Coverage
 
 - **Quick Shift** — 10-question shuffled ward-break run (with optional 30-second Blitz Timer).
-- **On-Call Case Simulator** — 5-stage progressive neonatal management case (Day 1 bolus, GIR calculation & central access, diazoxide/chlorothiazide dosing, glucagon weaning, and 6-hour safety fast).
-- **Full Guideline Mastery** — All 22 questions filterable across 5 clinical domains with immediate guideline-cited pearls, domain mastery breakdown, and a built-in Quick Reference sheet.
+- **On-Call Case Simulator (6 Stages)** — Progressive neonatal case covering Day 2 rescue, GIR calculation & glucagon line safety, diazoxide/chlorothiazide dosing, ≥ 7 mg/kg/day escalation & rapid *ABCC8/KCNJ11* genetics, dietetic fortification, and 6-hour safety fast + CGM discharge bundle.
+- **UK Consensus Deep Dive** — Focused drill on Shaikh et al. (2023) networked care, octreotide/tachyphylaxis, FII/exogenous insulin, nutrition/MDT, focal 18F-DOPA PET surgery, and CGM verification.
+- **Full Guideline Mastery (32 Questions across 6 Domains)** — Definitions & GIR, Diagnosis & Genetics, Acute & Glucagon, Diazoxide & Octreotide, Feeds/Diet & MDT, and Surgery/Discharge & CGM — plus a built-in Quick Reference sheet.
 
 *For educational use only. Always verify local clinical protocols before prescribing.*
